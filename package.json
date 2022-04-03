@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "d3": "^7.4.1",
+    "dayjs": "^1.11.0",
+    "gsap": "^3.10.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
@@ -24,11 +27,28 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-trailing-spaces": ["error", { "skipBlankLines": false }],
-      "object-curly-spacing": [2, "always"],
-      "indent": ["warn", 4 ],
-      "quotes": ["warn", "double" ],
-      "semi":["error","always"]
+      "no-trailing-spaces": [
+        "error",
+        {
+          "skipBlankLines": false
+        }
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "indent": [
+        "warn",
+        4
+      ],
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
     }
   },
   "browserslist": {
