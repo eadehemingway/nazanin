@@ -26,14 +26,15 @@ function getFill(d, i,  accessor){
         return d3.interpolateGreys(1-normalised);
     }
     else {
+        let color = "white";
         const is_in_range = getIsInRange(d.raw_date, min_date, max_date);
 
-        if (is_in_range) return "#ffdab9";
+        if (is_in_range) color= "#ffdab9";
 
         const col = getColumn(i, d.year);
         const is_weekend = col > 4;
-        if (is_weekend) return "rgba(255,215,0, 0.2)";
-        return "none";
+        if (is_weekend) color =  "rgba(255,215,0, 0.2)";
+        return color;
     }
 
 }
