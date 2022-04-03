@@ -8,11 +8,9 @@ import { getFill } from "../utils/getFill";
 function App() {
     const [accessor, setAccessor] = useState("articles");
 
-    // set up some scroll thing that updates the accessor which then updates the fills...
     useEffect(()=> {
-        d3.selectAll("rect").transition().duration(1000).attr("fill", (d, i)=>{
-            const color = getFill(d, d.day_index, accessor);
-            return color;
+        d3.selectAll("rect").transition().duration(1000).attr("fill", (d)=>{
+            return getFill(d, d.day_index, accessor);
         });
     }, [accessor]);
 
@@ -26,8 +24,7 @@ function App() {
 }
 
 const PageContainer = styled.div`
-display:flex;
-
+    display:flex;
 `;
 
 export default App;

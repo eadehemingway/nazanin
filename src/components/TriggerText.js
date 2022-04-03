@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const states = {
     0: "hunger",
     1: "articles",
     2: "default"
 };
-gsap.registerPlugin(ScrollTrigger);
 
 export function TriggerText({ text, index, setAccessor }){
 

@@ -4,14 +4,14 @@ import { processData, processed_data } from "../utils/process_data";
 import { getFill, getColumn } from "../utils/getFill";
 import { getDayJsYear, getStartDayIndex } from "../utils/utils";
 
-export const columns = 7;
+const columns = 7;
+const year_padding = 100;
+const days = ["M", "T", "W", "T", "F", "S", "S"];
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const box_size = 10;
+const y_padding = 150;
 
 export function YearViz({ year, index }){
-    const year_padding = 100;
-    const days = ["M", "T", "W", "T", "F", "S", "S"];
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const box_size = 10;
-    const y_padding = 150;
 
     useEffect(()=>{
         processData(year);
