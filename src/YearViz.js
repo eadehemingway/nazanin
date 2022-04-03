@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { processData, processed_data } from "./process_data";
+import { max_articles, processData, processed_data } from "./process_data";
+import { getFill } from "./getFill";
 import * as d3 from "d3";
 import dayjs from "dayjs";
 import dayOfYear from "dayjs/plugin/dayOfYear";
@@ -17,7 +18,6 @@ export function YearViz({ year, index }){
     const days = ["M", "T", "W", "T", "F", "S", "S"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const box_size = 15;
-    const svg = d3.select("svg").attr("width", 1500).attr("height", 1000).style("background-color", "black");
     const y_padding = 150;
 
     useEffect(()=>{
@@ -26,13 +26,15 @@ export function YearViz({ year, index }){
     }, []);
 
 
+
+
     function createYear(year, x_padding){
         const dayjs_year = dayjs(`${year}-01-01`);
 
         const column_index = new Date(dayjs_year.dayOfYear(1)).getDay();
         const start_day_index =  column_index > 0? column_index - 1: 6; // cos it starts on sunday
 
-        const group = svg.append("g").attr("class", `group-${year}`).attr("transform", `translate(${x_padding}, ${y_padding})`);
+        const group = d3.select("svg").append("g").attr("class", `group-${year}`).attr("transform", `translate(${x_padding}, ${y_padding})`);
         const month_dividers = [];
 
         function getColumn(i){
@@ -74,18 +76,8 @@ export function YearViz({ year, index }){
             })
             .attr("stroke", "#333")
             .attr("fill", (d,i) =>{
+                return getFill(d, "articles");
 
-                return d.hunger ? "blue": "green";
-                // const normalised = d.articles/max_articles
-                // return d3.interpolateGreys(1-normalised)
-
-                // const is_in_range = getIsInRange(d.date, min_date, max_date)
-                // if (is_in_range) return "#ffdab9"
-
-                // const col = getColumn(i)
-                // const is_weekend = col > 4
-                // if (is_weekend) return 'rgba(255,215,0, 0.2)'
-                // return 'none'
             })
             .each((d,i)=>{
                 // get info for divider lines
@@ -163,6 +155,7 @@ export function YearViz({ year, index }){
             return `M${x_one} ${y_one_and_two} L${x_two_and_three} ${y_one_and_two} L${x_two_and_three} ${y_three_and_four} L${x_four} ${y_three_and_four}`;
         } else return `M${x_one} ${y_one_and_two} L${x_four} ${y_one_and_two}`; // if there is only a y we just draw a straight line across
     }
+
     return null;
 }
 

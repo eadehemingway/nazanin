@@ -1,8 +1,6 @@
 import { data } from "./data";
 
 let max_articles;
-
-let lookup_articles;
 function createLookup(){
     let lookup_articles = {};
     max_articles = 0;

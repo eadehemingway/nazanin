@@ -1,4 +1,4 @@
-import { data } from "./data";
+
 import dayjs from "dayjs";
 import * as d3 from "d3";
 import { lookup_articles } from "./lookup_articles";
