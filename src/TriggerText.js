@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -8,36 +8,40 @@ const states = {
     1: "articles",
     2: "default"
 };
-
 gsap.registerPlugin(ScrollTrigger);
+
 export function TriggerText({ text, index, setAccessor }){
 
     useEffect(() => {
-        const tl_one = gsap.timeline({
+        gsap.timeline({
             scrollTrigger: {
-                trigger: `#dicked-${index}`,
+                trigger: `#text-${index}`,
                 markers: true,
-                // scrub: true,
-                start: "0px 100px",
-                // end: "bottom center",
+                start: "0px 300px",
+                end: "bottom 200px",
                 scroller: ".container",
+                onEnter:()=> { // when start meets scroller-start
+                    console.log("enter");
+                    setAccessor(states[index]);
+                },
+                // onLeave:()=> console.log("ON LEAVEEEE", index), // end meets scroller-end
+                onEnterBack:()=> { // when scroller-end meets end
+                    console.log("enter back");
+                    setAccessor(states[index]);
+                },
+                // onLeaveBack:()=> console.log("ON LEAVEEEE BACK", index) // scroller-start meets start
 
             },
-        });
-        tl_one.to(`#dicked-${index}`, {
-            onStart: ()=> setAccessor(states[index]),
         });
 
     }, []);
 
-    return <P id={`dicked-${index}`}>{text}</P>;
+    return <P id={`text-${index}`}>{text}</P>;
 }
 
 const P = styled.p`
     width: 80%;
-    margin: 300px 20px;
+    margin: 600px 20px;
     border: 1px solid black;
-    margin-bottom: 800px;
-
 
 `;
