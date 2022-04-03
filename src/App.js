@@ -12,8 +12,8 @@ function App() {
 
     // set up some scroll thing that updates the accessor which then updates the fills...
     useEffect(()=> {
-        d3.selectAll("rect").attr("fill", (d)=>{
-            const color = getFill(d, accessor);
+        d3.selectAll("rect").attr("fill", (d, i)=>{
+            const color = getFill(d, d.day_index, accessor);
             return color;
         });
     }, [accessor]);

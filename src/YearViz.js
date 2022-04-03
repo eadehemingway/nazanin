@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { max_articles, processData, processed_data } from "./process_data";
-import { getFill } from "./getFill";
+import { getFill, getColumn } from "./getFill";
+
 import * as d3 from "d3";
 import dayjs from "dayjs";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
 import isLeapYear from "dayjs/plugin/isLeapYear";
+import { getDayJsYear } from "./utils";
 dayjs().format();
 dayjs.extend(dayOfYear);
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(isLeapYear);
+export const columns = 7;
 
+export function getStartDayIndex(year){
+    const dayjs_year = getDayJsYear(year);
+    const column_index = new Date(dayjs_year.dayOfYear(1)).getDay();
+    const start_day_index =  column_index > 0? column_index - 1: 6; // cos it starts on sunday
+    return start_day_index;
+}
 export function YearViz({ year, index }){
-    const year_padding = 150;
-    const columns = 7;
+    const year_padding = 100;
     const days = ["M", "T", "W", "T", "F", "S", "S"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const box_size = 15;
+    const box_size = 10;
     const y_padding = 150;
 
     useEffect(()=>{
@@ -29,19 +37,10 @@ export function YearViz({ year, index }){
 
 
     function createYear(year, x_padding){
-        const dayjs_year = dayjs(`${year}-01-01`);
-
-        const column_index = new Date(dayjs_year.dayOfYear(1)).getDay();
-        const start_day_index =  column_index > 0? column_index - 1: 6; // cos it starts on sunday
-
+        const start_day_index = getStartDayIndex(year);
         const group = d3.select("svg").append("g").attr("class", `group-${year}`).attr("transform", `translate(${x_padding}, ${y_padding})`);
         const month_dividers = [];
 
-        function getColumn(i){
-            const offset_index = i + start_day_index;
-            const col = offset_index % columns;
-            return col;
-        }
 
         function getRow(i){
             const offset_index = i + start_day_index;
@@ -50,6 +49,7 @@ export function YearViz({ year, index }){
         }
 
         function getMonthIndex (day_num){
+            const dayjs_year = getDayJsYear(year);
             return new Date(dayjs_year.dayOfYear(day_num + 1)).getMonth();
         }
 
@@ -67,7 +67,7 @@ export function YearViz({ year, index }){
             .attr("width", box_size)
             .attr("height", box_size)
             .attr("x", (d,i) => {
-                const col_index = getColumn(i);
+                const col_index = getColumn(i, year);
                 return getX(col_index);
             })
             .attr("y", (d,i)=> {
@@ -76,12 +76,12 @@ export function YearViz({ year, index }){
             })
             .attr("stroke", "#333")
             .attr("fill", (d,i) =>{
-                return getFill(d, "articles");
+                return getFill(d, i, "articles");
 
             })
             .each((d,i)=>{
                 // get info for divider lines
-                const col = getColumn(i);
+                const col = getColumn(i, year);
                 const first_sqaure_in_row = col === 0;
                 if (first_sqaure_in_row){
                     const month_index_at_start_of_row = getMonthIndex(i);
@@ -100,7 +100,7 @@ export function YearViz({ year, index }){
                             last_day_col ++;
                             month_index_of_col = getMonthIndex(last_day_col + i);
                         }
-                        const last_col = getColumn(last_day_col + i);
+                        const last_col = getColumn(last_day_col + i, year);
                         const x = getX(last_col); // the minus one is so that it draws on left of the col...
 
                         month_dividers.push({ x, y });
