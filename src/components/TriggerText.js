@@ -19,7 +19,7 @@ export function TriggerText({ text, index, setAccessor }){
                 markers: true,
                 start: "0px 300px",
                 end: "bottom 200px",
-                scroller: ".container",
+                scroller: ".scroll-container",
                 onEnter:()=> { // when start meets scroller-start
                     console.log("enter");
                     setAccessor(states[index]);
