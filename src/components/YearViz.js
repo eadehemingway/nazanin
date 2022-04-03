@@ -1,26 +1,11 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { max_articles, processData, processed_data } from "./process_data";
-import { getFill, getColumn } from "./getFill";
-
 import * as d3 from "d3";
-import dayjs from "dayjs";
-import dayOfYear from "dayjs/plugin/dayOfYear";
-import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
-import isLeapYear from "dayjs/plugin/isLeapYear";
-import { getDayJsYear } from "./utils";
-dayjs().format();
-dayjs.extend(dayOfYear);
-dayjs.extend(isoWeeksInYear);
-dayjs.extend(isLeapYear);
+import { useEffect } from "react";
+import { processData, processed_data } from "../utils/process_data";
+import { getFill, getColumn } from "../utils/getFill";
+import { getDayJsYear, getStartDayIndex } from "../utils/utils";
+
 export const columns = 7;
 
-export function getStartDayIndex(year){
-    const dayjs_year = getDayJsYear(year);
-    const column_index = new Date(dayjs_year.dayOfYear(1)).getDay();
-    const start_day_index =  column_index > 0? column_index - 1: 6; // cos it starts on sunday
-    return start_day_index;
-}
 export function YearViz({ year, index }){
     const year_padding = 100;
     const days = ["M", "T", "W", "T", "F", "S", "S"];
@@ -32,9 +17,6 @@ export function YearViz({ year, index }){
         processData(year);
         createYear(year, year_padding * (index + 1));
     }, []);
-
-
-
 
     function createYear(year, x_padding){
         const start_day_index = getStartDayIndex(year);

@@ -1,9 +1,7 @@
 import * as d3 from "d3";
 import { max_articles } from "./process_data";
-import { columns } from "./YearViz";
-import { getStartDayIndex } from "./YearViz";
-
-
+import { columns } from "../components/YearViz";
+import { getStartDayIndex } from "../utils/utils";
 
 const min_date = new Date("April 03, 2016 00:00:00");
 const max_date = new Date("March 16, 2022 00:00:00");

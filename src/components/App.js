@@ -1,11 +1,9 @@
-
-import gsap from "gsap";
 import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 import { TextContainer } from "./TextContainer";
 import { SvgVisual } from "./SvgVisual";
-import { getFill } from "./getFill";
+import { getFill } from "../utils/getFill";
 
 function App() {
     const [accessor, setAccessor] = useState("articles");
