@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
 import { useEffect } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
 
 export function TTLayer({ layer, setLayer, tl, text_arr, setStage }){
 
