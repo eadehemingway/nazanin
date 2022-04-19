@@ -49,10 +49,10 @@ export function YearViz({ year, index, layer, stage }){
                 if (month_divider_coords) month_dividers.push(month_divider_coords);
             });
 
-    }, [data, index, month_dividers, year]);
+    }, [data, index, month_dividers, year, layer, stage]);
 
     const drawYearLabel = useCallback(()=>{
-        d3.select(`group-${year}`)
+        d3.select(`.group-${year}`)
             .append("text")
             .text(year)
             .attr("x", 0)
@@ -62,7 +62,7 @@ export function YearViz({ year, index, layer, stage }){
 
     const drawDayLabels = useCallback(()=>{
         const DAYS = ["M", "T", "W", "T", "F", "S", "S"];
-        d3.select(`group-${year}`)
+        d3.select(`.group-${year}`)
             .selectAll(".day-labels")
             .data(DAYS)
             .enter()
@@ -76,21 +76,24 @@ export function YearViz({ year, index, layer, stage }){
     }, [year]);
 
     const drawMonthDividers = useCallback(()=>{
-        d3.select(`group-${year}`)
-            .selectAll("path")
+        d3.select(`.group-${year}`)
+            .selectAll(".month-dividers")
             .data(month_dividers)
             .enter()
             .append("path")
-            .attr("d", (d)=> getMonthDividerPaths(d.x, d.y))
+            .attr("class", "month-dividers")
+            .attr("d", (d)=> {
+                console.log("getMonthDividerPaths(d.x, d.y):", getMonthDividerPaths(d.x, d.y));
+                return getMonthDividerPaths(d.x, d.y);})
             .attr("stroke-width", 2)
             .attr("stroke", "#333")
             .attr("fill", "none");
 
     }, [year, month_dividers]);
 
-    const drawMonthLabels=useCallback(()=>{
+    const drawMonthLabels = useCallback(()=>{
         const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        d3.select(`group-${year}`)
+        d3.select(`.group-${year}`)
             .selectAll(".month-labels")
             .data(MONTHS)
             .enter()
@@ -103,12 +106,13 @@ export function YearViz({ year, index, layer, stage }){
     }, [year]);
 
     useEffect(()=> {
+        if (!data.length) return;
         drawYear();
         drawMonthLabels();
         drawMonthDividers();
         drawDayLabels();
         drawYearLabel();
-    }, [index, year, drawYear, drawMonthDividers, drawMonthLabels, drawDayLabels, drawYearLabel]);
+    }, [data, drawDayLabels, drawYear, drawMonthDividers, drawYearLabel, drawMonthLabels]);
 
     return null;
 }
