@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import { useEffect, useState } from "react";
-import { processData, processed_data } from "../utils/process_data";
+import { processData } from "../utils/process_data";
 import { getFill, getColumn } from "../utils";
 import { getDayJsYear, getStartDayIndex } from "../utils";
 
@@ -12,12 +12,17 @@ const box_size = 10;
 const y_padding = 150;
 
 export function YearViz({ year, index }){
-    // const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(()=>{
-        processData(year);
-        createYear(year, year_padding * (index + 1));
+        const processed_data = processData(year);
+        setData(processed_data);
     }, []);
+
+    useEffect(()=> {
+        createYear(year, year_padding * (index + 1));
+
+    }, [data]);
 
     function createYear(year, x_padding){
         const start_day_index = getStartDayIndex(year);
@@ -44,7 +49,7 @@ export function YearViz({ year, index }){
         }
 
         group.selectAll("rect")
-            .data(processed_data)
+            .data(data)
             .enter()
             .append("rect")
             .attr("width", box_size)

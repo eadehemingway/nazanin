@@ -13,8 +13,8 @@ export function SvgVisual(){
 }
 
 const Container = styled.svg`
-border: 2px solid blue;
-width: 70%;
-height: 100vh;
+    border: 2px solid blue;
+    width: 70%;
+    height: 100vh;
 
 `;
