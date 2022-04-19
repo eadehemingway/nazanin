@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
-import { TextContainer } from "./TextContainer";
+import { TextContainer } from "./TTContainer";
 import { SvgVisual } from "./SvgVisual";
 import { getFill } from "../services/getFill";
-
+// const states = {
+//     0: "hunger",
+//     1: "articles",
+//     2: "default"
+// };
 function App() {
     const [accessor, setAccessor] = useState("block");
 
