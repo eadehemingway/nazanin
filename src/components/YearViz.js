@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useState } from "react";
-import { processData } from "../process_data";
-import { getFill, getColumn } from "../utils";
-import { getDayJsYear, getStartDayIndex } from "../utils";
+import { processData } from "../services/process_data";
+import { getFill } from "../services/getFill";
+import { getDayJsYear, getStartDayIndex,getColumn } from "../services/utils";
 
 const columns = 7;
 const days = ["M", "T", "W", "T", "F", "S", "S"];

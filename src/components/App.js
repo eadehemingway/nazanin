@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import styled from "styled-components";
 import { TextContainer } from "./TextContainer";
 import { SvgVisual } from "./SvgVisual";
-import { getFill } from "../utils";
+import { getFill } from "../services/getFill";
 
 function App() {
     const [accessor, setAccessor] = useState("block");
