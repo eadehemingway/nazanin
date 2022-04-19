@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { processData } from "../services/process_data";
 import { getFill } from "../services/getFill";
 import { getDayJsYear, getStartDayIndex,getColumn } from "../services/utils";
@@ -12,19 +12,21 @@ const y_padding = 150;
 
 export function YearViz({ year, index }){
     const [data, setData] = useState([]);
+    const month_dividers = useMemo(()=> [], []);
 
     useEffect(()=>{
         const processed_data = processData(year);
         setData(processed_data);
     }, [year]);
 
-    const drawYear = useCallback((year, x_padding)=>{
+    const drawYear = useCallback(()=>{
+        const year_padding = 100;
+        const x_padding = year_padding * (index + 1);
         const group = d3.select("svg")
             .append("g")
             .attr("class", `group-${year}`)
             .attr("transform", `translate(${x_padding}, ${y_padding})`);
 
-        const month_dividers = [];
         group.selectAll("rect")
             .data(data)
             .enter()
@@ -52,7 +54,20 @@ export function YearViz({ year, index }){
                 if (month_divider_coords) month_dividers.push(month_divider_coords);
             });
 
-        group.selectAll(".day-labels")
+    }, [data, index, month_dividers, year]);
+
+    const drawYearLabel = useCallback(()=>{
+        d3.select(`group-${year}`)
+            .append("text")
+            .text(year)
+            .attr("x", 0)
+            .attr("y", - 50);
+
+    }, [year]);
+
+    const drawDayLabels = useCallback(()=>{
+        d3.select(`group-${year}`)
+            .selectAll(".day-labels")
             .data(days)
             .enter()
             .append("text")
@@ -61,10 +76,11 @@ export function YearViz({ year, index }){
             .attr("x", (d, i) => getX(i))
             .attr("y",  - 15)
             .attr("font-size", "10px");
+    }, [year]);
 
-        group.append("text").text(year).attr("x", 0).attr("y", - 50);
-
-        group.selectAll("path")
+    const drawMonthDividers = useCallback(()=>{
+        d3.select(`group-${year}`)
+            .selectAll("path")
             .data(month_dividers)
             .enter()
             .append("path")
@@ -72,8 +88,11 @@ export function YearViz({ year, index }){
             .attr("stroke-width", 2)
             .attr("stroke", "#333")
             .attr("fill", "none");
+    }, [year, month_dividers]);
 
-        group.selectAll(".month-labels")
+    const drawMonthLabels=useCallback(()=>{
+        d3.select(`group-${year}`)
+            .selectAll(".month-labels")
             .data(months)
             .enter()
             .append("text")
@@ -81,13 +100,15 @@ export function YearViz({ year, index }){
             .attr("x", -20)
             .attr("y", (d,i) => (i * (4.4 * box_size)) + 30)
             .attr("font-size", "10px");
-
-    }, [data]);
+    }, [year]);
 
     useEffect(()=> {
-        const year_padding = 100;
-        drawYear(year, year_padding * (index + 1));
-    }, [index, year, drawYear]);
+        drawYear();
+        drawMonthLabels();
+        drawMonthDividers();
+        drawDayLabels();
+        drawYearLabel();
+    }, [index, year, drawYear, drawMonthDividers, drawMonthLabels, drawDayLabels, drawYearLabel]);
 
     return null;
 }
