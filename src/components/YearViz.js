@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useState } from "react";
-import { processData } from "../utils/process_data";
+import { processData } from "../process_data";
 import { getFill, getColumn } from "../utils";
 import { getDayJsYear, getStartDayIndex } from "../utils";
 

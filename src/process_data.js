@@ -1,7 +1,7 @@
 
 
-import { lookup_articles } from "../data/lookup_articles";
-import { getDayJsYear, getDateFromIndex } from ".";
+import { lookup_articles } from "./data/lookup_articles";
+import { getDayJsYear, getDateFromIndex } from "./utils";
 
 
 export function processData(year){
