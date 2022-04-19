@@ -1,8 +1,8 @@
 import * as d3 from "d3";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { processData, processed_data } from "../utils/process_data";
-import { getFill, getColumn } from "../utils/getFill";
-import { getDayJsYear, getStartDayIndex } from "../utils/utils";
+import { getFill, getColumn } from "../utils";
+import { getDayJsYear, getStartDayIndex } from "../utils";
 
 const columns = 7;
 const year_padding = 100;
@@ -12,6 +12,7 @@ const box_size = 10;
 const y_padding = 150;
 
 export function YearViz({ year, index }){
+    // const [data, setData] = useState([]);
 
     useEffect(()=>{
         processData(year);
@@ -57,8 +58,13 @@ export function YearViz({ year, index }){
                 return getY(row_index);
             })
             .attr("stroke", "#333")
+            .attr("fill", "transparent")
+            .transition()
+            .delay((d,i)=> Math.random() * 5000)
+            // .delay((d,i)=> Math.random() * 5000)
+            .attr("stroke-opacity", 1)
             .attr("fill", (d,i) =>{
-                return getFill(d, i, "articles");
+                return getFill(d, i, "block");
 
             })
             .each((d,i)=>{

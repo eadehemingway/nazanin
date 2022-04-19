@@ -1,17 +1,11 @@
 
-import * as d3 from "d3";
+
 import { lookup_articles } from "../data/lookup_articles";
-import { getDayJsYear } from "./utils";
+import { getDayJsYear, getDateFromIndex } from ".";
+
 
 export let processed_data;
-export const max_articles = 5;
 
-function getDateFromIndex(year, i){
-    const dayjs_year = getDayJsYear(year);
-    const day = dayjs_year.dayOfYear(i);
-    const date = new Date(day);
-    return d3.timeFormat("%Y-%m-%d")(date);
-}
 
 export function processData(year){
     const dayjs_year = getDayJsYear(year);
