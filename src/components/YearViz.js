@@ -18,7 +18,7 @@ export function YearViz({ year, index }){
         setData(processed_data);
     }, [year]);
 
-    const createYear = useCallback((year, x_padding)=>{
+    const drawYear = useCallback((year, x_padding)=>{
         const group = d3.select("svg")
             .append("g")
             .attr("class", `group-${year}`)
@@ -86,8 +86,8 @@ export function YearViz({ year, index }){
 
     useEffect(()=> {
         const year_padding = 100;
-        createYear(year, year_padding * (index + 1));
-    }, [index, year, createYear]);
+        drawYear(year, year_padding * (index + 1));
+    }, [index, year, drawYear]);
 
     return null;
 }

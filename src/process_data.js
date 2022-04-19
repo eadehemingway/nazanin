@@ -1,8 +1,14 @@
 
-
+import * as d3 from "d3";
 import { lookup_articles } from "./data/lookup_articles";
-import { getDayJsYear, getDateFromIndex } from "./utils";
+import { getDayJsYear } from "./utils";
 
+function getDateFromIndex(year, i){
+    const dayjs_year = getDayJsYear(year);
+    const day = dayjs_year.dayOfYear(i);
+    const date = new Date(day);
+    return d3.timeFormat("%Y-%m-%d")(date);
+}
 
 export function processData(year){
     const dayjs_year = getDayJsYear(year);
