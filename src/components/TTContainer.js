@@ -8,14 +8,25 @@ import { TTLayer } from "./TTLayer";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function TextContainer({ setLayer }){
+export function TextContainer({ setLayer, setStage }){
 
     const tl = useMemo(()=> gsap.timeline({}), []);
 
-    const layer_names = ["politics", "location"];
+    const layers = [
+        {
+            name: "location",
+            text_arr: ["nine", "yeah", "huuu"]
+        },
+        {
+            name: "politics",
+            text_arr: ["cock", "yuuu", "lana", "minl"]
+        },
+
+
+    ];
     return (
         <ScrollContainer className="scroll-container">
-            {layer_names.map((l,i)=> <TTLayer key={i} layer={l} text_arr={[]} setLayer={setLayer} tl={tl}/>)}
+            {layers.map((l,i)=> <TTLayer key={i} layer={l.name} text_arr={l.text_arr} setLayer={setLayer} setStage={setStage} tl={tl}/>)}
 
         </ScrollContainer>
     );
@@ -30,20 +41,3 @@ const ScrollContainer = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
-const P = styled.p`
-border: 3px solid blue;
-`;
-
-const TextWrapper = styled.div`
-    width: 30%;
-    border: 2px solid red;
-    background: red;
-
-    display:flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin-top: 300px;
-    margin-bottom: 200px;
-    justify-content: space-between;
-`;
-
