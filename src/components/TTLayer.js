@@ -17,17 +17,11 @@ export function TTLayer({ layer, setLayer, tl, text_arr, setStage }){
             start: "0px 300px",
             end: "bottom 200px",
             scroller: ".scroll-container",
-            onEnter:()=> {
-                setLayer(layer);
-            },
-            onEnterBack:()=> {
-                setLayer(layer);
-            },
+            onEnter:()=>  setLayer(layer),
+            onEnterBack:()=> setLayer(layer)
         });
 
         tl.add(trigg);
-
-
     }, [setLayer, layer, tl]);
     return (
 
@@ -39,8 +33,7 @@ export function TTLayer({ layer, setLayer, tl, text_arr, setStage }){
                 index={i}
                 setStage={setStage}
                 layer={layer}
-            >{t}
-            </TTText>)}
+            >{t}</TTText>)}
         </TextWrapper>
 
     );

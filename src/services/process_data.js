@@ -2,7 +2,7 @@
 import * as d3 from "d3";
 import { lookup_articles } from "../data/lookup_articles";
 import { getDayJsYear } from "./utils";
-import { LAYER_NAMES, LAYERS } from "../components/App";
+import { LAYER_NAMES, LAYERS } from "../data/CONSTANTS";
 import { getLocationsFill } from "./getLocationFill";
 import { getPoliticsFill } from "./getPoliticsFill";
 
@@ -38,14 +38,14 @@ function getColorsObj(date){
     LAYERS.forEach((lay_obj)=> {
         const layer_obj = {};
         lay_obj.text_arr.forEach((_, stage_index)=>{
-            layer_obj[stage_index] = getColor(date, lay_obj.name, stage_index);
+            layer_obj[stage_index] = getFill(date, lay_obj.name, stage_index);
         });
         obj[lay_obj.name] = layer_obj;
     });
     return obj;
 }
 
-function getColor(date, layer, stage){
+function getFill(date, layer, stage){
     switch (layer) {
     case LAYER_NAMES.politics:
         return getPoliticsFill(date, stage);

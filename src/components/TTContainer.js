@@ -1,22 +1,24 @@
 import styled from "styled-components";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { TTLayer } from "./TTLayer";
-import { LAYERS } from "./App";
-
-
+import { LAYERS } from "../data/CONSTANTS";
 gsap.registerPlugin(ScrollTrigger);
 
+
 export function TextContainer({ setLayer, setStage }){
-
     const tl = useMemo(()=> gsap.timeline({}), []);
-
     return (
         <ScrollContainer className="scroll-container">
-            {LAYERS.map((l,i)=> <TTLayer key={i} layer={l.name} text_arr={l.text_arr} setLayer={setLayer} setStage={setStage} tl={tl}/>)}
-
+            {LAYERS.map((l,i)=> <TTLayer
+                key={i}
+                layer={l.name}
+                text_arr={l.text_arr}
+                setLayer={setLayer}
+                setStage={setStage}
+                tl={tl}
+            />)}
         </ScrollContainer>
     );
 }
