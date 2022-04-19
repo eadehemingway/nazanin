@@ -3,20 +3,20 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import { useEffect, useMemo } from "react";
-import { TTLocationLayer } from "./TTLocationLayer";
-import { TTPoliticsLayer } from "./TTPoliticsLayer";
+import { TTLayer } from "./TTLayer";
 
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function TextContainer({ setAccessor }){
+export function TextContainer({ setLayer }){
 
     const tl = useMemo(()=> gsap.timeline({}), []);
 
+    const layer_names = ["politics", "location"];
     return (
         <ScrollContainer className="scroll-container">
-            <TTLocationLayer tl={tl} setAccessor={setAccessor}/>
-            <TTPoliticsLayer tl={tl} setAccessor={setAccessor}/>
+            {layer_names.map((l,i)=> <TTLayer key={i} layer={l} text_arr={[]} setLayer={setLayer} tl={tl}/>)}
+
         </ScrollContainer>
     );
 }

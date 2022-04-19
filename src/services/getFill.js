@@ -9,13 +9,13 @@ function getIsInRange(date, min_date, max_date){
 }
 
 export function getFill(d, i,  accessor){
-    if (accessor==="block"){
+    if (accessor==="politics"){
         let color = "transparent";
         const is_in_range = getIsInRange(d.raw_date, min_date, max_date);
         if (is_in_range) color= "red";
         return color;
     }
-    if (accessor === "hunger"){
+    if (accessor === "location"){
         return d.hunger ? "blue": "green";
     }
     if (accessor === "articles"){

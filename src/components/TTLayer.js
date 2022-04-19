@@ -6,38 +6,36 @@ import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function TTPoliticsLayer({ setAccessor, tl }){
-    const id = "politics-layer";
-    const intra_city_tl = gsap.timeline({});
-    const text = ["politics one", "politics two", "politics three"];
-    useEffect(() => {
-        const str = "hunger";
+export function TTLayer({ layer, setLayer, tl, text_arr }){
 
+    const intra_city_tl = gsap.timeline({});
+
+    useEffect(() => {
         const trigg = ScrollTrigger.create({
-            trigger: `#${id}`,
+            trigger: `#${layer}`,
             markers: true,
             start: "0px 300px",
             end: "bottom 200px",
             scroller: ".scroll-container",
             onEnter:()=> { // when start meets scroller-start
                 console.log("enter");
-                setAccessor(str);
+                setLayer(layer);
             },
             // onLeave:()=> console.log("ON LEAVEEEE", index), // end meets scroller-end
             onEnterBack:()=> { // when scroller-end meets end
                 console.log("enter back");
-                setAccessor(str);
+                setLayer(layer);
             },
         });
 
         tl.add(trigg);
 
 
-    }, [setAccessor]);
+    }, [setLayer]);
     return (
 
-        <TextWrapper id={id}>
-            {text.map((t,i)=> <P text={t} key={i} >{t}</P>)}
+        <TextWrapper id={layer}>
+            {text_arr.map((t,i)=> <P text={t} key={i} >{t}</P>)}
         </TextWrapper>
 
     );
@@ -51,7 +49,7 @@ border: 3px solid blue;
 const TextWrapper = styled.div`
     width: 30%;
     border: 2px solid red;
-    background: red;
+    background: green;
 
     display:flex;
     flex-direction: column;
