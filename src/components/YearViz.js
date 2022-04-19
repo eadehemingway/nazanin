@@ -1,7 +1,6 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { processData } from "../services/process_data";
-import { getFill } from "../services/getFill";
 import { getDayJsYear, getStartDayIndex,getColumn } from "../services/utils";
 
 const columns = 7;
@@ -10,7 +9,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const box_size = 10;
 const y_padding = 150;
 
-export function YearViz({ year, index }){
+export function YearViz({ year, index, layer, stage }){
     const [data, setData] = useState([]);
     const month_dividers = useMemo(()=> [], []);
 
@@ -47,7 +46,7 @@ export function YearViz({ year, index }){
             .delay((d,i)=> Math.random() * 5000)
             .attr("stroke-opacity", 1)
             .attr("fill", (d,i) =>{
-                return getFill(d, i, "block");
+                return d.colors[layer][stage];
             })
             .each((_,i)=>{
                 const month_divider_coords = getMonthDividerCoords(i, year);

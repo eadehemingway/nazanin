@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { YearViz } from "./YearViz";
 
-export function SvgVisual(){
+export function SvgVisual({ layer, stage }){
 
     const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022];
 
     return (
         <Container>
-            {years.map((d,i)=> <YearViz key={i} year={d} index={i} />)}
+            {years.map((d,i)=> <YearViz layer={layer} stage={stage} key={i} year={d} index={i} />)}
         </Container>
     );
 }
