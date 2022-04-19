@@ -3,6 +3,8 @@ import * as d3 from "d3";
 import { lookup_articles } from "../data/lookup_articles";
 import { getDayJsYear } from "./utils";
 import { LAYER_NAMES, LAYERS } from "../components/App";
+import { getLocationsFill } from "./getLocationFill";
+import { getPoliticsFill } from "./getPoliticsFill";
 
 function getDateFromIndex(year, i){
     const dayjs_year = getDayJsYear(year);
@@ -34,26 +36,16 @@ export function processData(year){
 function getColorsObj(date){
     const obj = {};
     LAYERS.forEach((lay_obj)=> {
-
-        const stages = lay_obj.text_arr;
         const layer_obj = {};
-        stages.forEach((_, stage_index)=>{
-
+        lay_obj.text_arr.forEach((_, stage_index)=>{
             layer_obj[stage_index] = getColor(date, lay_obj.name, stage_index);
         });
         obj[lay_obj.name] = layer_obj;
     });
-
     return obj;
 }
 
 function getColor(date, layer, stage){
-    const col1 = "red";
-    const col2 = "blue";
-    const col5 = "yellow";
-    const col7 = "sienna";
-
-
     switch (layer) {
     case LAYER_NAMES.politics:
         return getPoliticsFill(date, stage);
@@ -62,13 +54,7 @@ function getColor(date, layer, stage){
     default:
         return "sienna";
     }
-
 }
 
-function getPoliticsFill(date, stage){
 
-    return "yellow";
-}
-function getLocationsFill(date, stage){
-    return "green";
-}
+
