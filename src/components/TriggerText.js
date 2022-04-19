@@ -11,7 +11,6 @@ const states = {
 };
 
 export function TriggerText({ text, index, setAccessor }){
-
     useEffect(() => {
         gsap.timeline({
             scrollTrigger: {
@@ -34,7 +33,7 @@ export function TriggerText({ text, index, setAccessor }){
             },
         });
 
-    }, []);
+    }, [index, setAccessor]);
 
     return <P id={`text-${index}`}>{text}</P>;
 }
