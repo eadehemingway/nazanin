@@ -1,19 +1,17 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { processData } from "../services/process_data";
+import { getYearData } from "../services/getYearData";
 import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
 import { BOX_SIZE } from "../data/CONSTANTS.js";
 
 export function YearViz({ year, index }){
-    const [data, setData] = useState([]);
     const month_dividers = useMemo(()=> [], []);
-
-    useEffect(()=>{
-        const processed_data = processData(year);
-        setData(processed_data);
+    const data = useMemo(()=>{
+        return  getYearData(year);
     }, [year]);
+
 
     const drawYear = useCallback(()=>{
         const year_padding = 100;

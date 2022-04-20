@@ -13,14 +13,12 @@ function getDateFromIndex(year, i){
     return d3.timeFormat("%Y-%m-%d")(date);
 }
 
-
-
 function getIsInRange(date){
     return date >= MIN_DATE && date <= MAX_DATE;
 }
 
 // should run the processData function once before deployment then remove from useEffect
-export function processData(year){
+export function getYearData(year){
     const dayjs_year = getDayJsYear(year);
     const full_year = dayjs_year.isLeapYear() ? 366 : 365;
     return new Array(full_year).fill(null).map((d,i)=> {
@@ -64,6 +62,8 @@ function getFill(date, layer, stage){
         return "sienna";
     }
 }
+
+
 
 
 

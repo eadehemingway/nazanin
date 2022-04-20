@@ -1,9 +1,9 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { YearViz } from "./YearViz";
 
-export function SvgVisual({ }){
+export function SvgVisual(){
     const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022];
-
     return (
         <Container>
             {years.map((d,i)=> <YearViz
