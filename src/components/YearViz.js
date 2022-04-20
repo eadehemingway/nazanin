@@ -6,7 +6,7 @@ import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
 import { BOX_SIZE } from "../data/CONSTANTS.js";
 
-export function YearViz({ year, index, layer, stage }){
+export function YearViz({ year, index }){
     const [data, setData] = useState([]);
     const month_dividers = useMemo(()=> [], []);
 
@@ -42,13 +42,13 @@ export function YearViz({ year, index, layer, stage }){
             .attr("fill", "transparent")
             .transition()
             .attr("stroke-opacity", 1)
-            .attr("fill", (d,i) =>  d.is_in_range ? d.colors[layer][stage] : "transparent")
+            .attr("fill", (d,i) =>  d.is_in_range ? "pink" : "transparent")
             .each((_,i)=>{
                 const month_divider_coords = getMonthDividerCoords(i, year);
                 if (month_divider_coords) month_dividers.push(month_divider_coords);
             });
 
-    }, [data, index, month_dividers, year, layer, stage]);
+    }, [data, index, month_dividers, year]);
 
     const drawYearLabel = useCallback(()=>{
         d3.select(`.group-${year}`)
@@ -90,7 +90,7 @@ export function YearViz({ year, index, layer, stage }){
             })
             .attr("fill", "none");
 
-    }, [year, month_dividers]);
+    }, [month_dividers, year]);
 
     const drawMonthLabels = useCallback(()=>{
         const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

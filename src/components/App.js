@@ -10,6 +10,8 @@ function App() {
     const [layer, setLayer] = useState(LAYER_NAMES.politics);
 
     useEffect(()=> {
+
+        // update fills
         d3
             .selectAll("rect")
             .transition()
@@ -21,7 +23,7 @@ function App() {
 
     return (
         <PageContainer>
-            <SvgVisual layer={layer} stage={stage}/>
+            <SvgVisual/>
             <TextContainer setStage={setStage} setLayer={setLayer}/>
         </PageContainer>
     );
