@@ -15,7 +15,7 @@ function App() {
             .transition()
             .duration(1000)
             .attr("fill", (d)=>{
-                return d.colors[layer][stage];
+                return d.is_in_range ? d.colors[layer][stage] : "transparent";
             });
     }, [layer, stage]);
 

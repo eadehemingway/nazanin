@@ -27,6 +27,7 @@ export function processData(year){
             year,
             hunger: i % 2 === 0,
             day_index: i,
+            is_in_range: false,
             colors
         };
     });

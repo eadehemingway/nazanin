@@ -38,12 +38,11 @@ export function YearViz({ year, index, layer, stage }){
                 const row_index = getRow(i, year);
                 return getY(row_index);
             })
-            .attr("stroke", "#333")
+            .attr("stroke", (d)=>  d.is_in_range ? "grey" : "transparent")
             .attr("fill", "transparent")
             .transition()
-            .delay((d,i)=> Math.random() * 5000)
             .attr("stroke-opacity", 1)
-            .attr("fill", (d,i) => d.colors[layer][stage])
+            .attr("fill", (d,i) =>  d.is_in_range ? d.colors[layer][stage] : "transparent")
             .each((_,i)=>{
                 const month_divider_coords = getMonthDividerCoords(i, year);
                 if (month_divider_coords) month_dividers.push(month_divider_coords);
