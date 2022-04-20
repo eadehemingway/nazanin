@@ -16,7 +16,7 @@ function getDateFromIndex(year, i){
 // should run the processData function once before deployment then remove from useEffect
 export function processData(year){
     const dayjs_year = getDayJsYear(year);
-    const full_year = dayjs_year.isLeapYear ? 366 : 365;
+    const full_year = dayjs_year.isLeapYear() ? 366 : 365;
     return new Array(full_year).fill(null).map((d,i)=> {
         const date = getDateFromIndex(year, i + 1);
         const colors = getColorsObj(date);
