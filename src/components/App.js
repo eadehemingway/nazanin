@@ -29,7 +29,6 @@ function App() {
 
         // update dividors
         const new_divider_data = divider_path_lookups[layer][stage];
-        console.log("new_divider_data:", new_divider_data);
         const dividers =  d3.select("svg")
             .selectAll(".dividers")
             .data(new_divider_data);
@@ -41,7 +40,6 @@ function App() {
 
         const update_dividers = entering_dividers.merge(dividers);
         update_dividers.attr("d", (d)=>{
-            console.log("d:", d.path);
             return d.path;
         })
             .attr("stroke-width", 7)

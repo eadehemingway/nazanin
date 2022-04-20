@@ -16,15 +16,15 @@ export const LAYERS = [
             {
                 id: "w",
                 description: "Boris",
-                start_date: new Date("April 03, 2016 00:00:00"),
+                start_date: new Date("April 07, 2016 00:00:00"),
                 end_date: new Date("April 29, 2016 00:00:00")
             },
-            {
-                id: "q",
-                description: "Hunt",
-                start_date: new Date("June 03, 2019 00:00:00"),
-                end_date: new Date("June 20, 2019 00:00:00")
-            }
+            // {
+            //     id: "q",
+            //     description: "Hunt",
+            //     start_date: new Date("June 03, 2019 00:00:00"),
+            //     end_date: new Date("June 20, 2019 00:00:00")
+            // }
         ]
     },
     {

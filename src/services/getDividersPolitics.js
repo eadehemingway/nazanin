@@ -1,4 +1,6 @@
 import { LAYERS, LAYER_NAMES } from "../data/CONSTANTS";
+import { getDividerCoords } from "./getDividerCoords";
+import { getDividerPaths } from "./getDividerPaths";
 
 export function getPoliticsDividers(stage){
     const layer_data = LAYERS.find(l=> l.name === LAYER_NAMES.politics);
@@ -13,6 +15,8 @@ export function getPoliticsDividers(stage){
     return all_paths;
 }
 
+
 function constructPathFromDate(date){
-    return "M0 100 L10 100 L10 90 L70 90";
+    const coords = getDividerCoords(date);
+    return  getDividerPaths(coords);
 }

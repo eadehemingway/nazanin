@@ -6,3 +6,7 @@
 
 - services folder - javascript functions that dont do anything to the dom they just return stuff. The utils file is in here and holds more generic util functions then the functions that are less agnostic are in their own files.
 
+
+
+## next steps
+- refactor getMonthDividerCoords function so that i can use it both for month dividers and also for big dividers.

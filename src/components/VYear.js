@@ -41,8 +41,12 @@ export function YearViz({ year, index }){
             .transition()
             .attr("fill", (d,i) =>  d.is_in_range ? "pink" : "transparent")
             .each((_,i)=>{
-                const month_divider_coords = getMonthDividerCoords(i, year);
-                if (month_divider_coords) month_dividers.push(month_divider_coords);
+                const col = getColumn(i, year);
+                const first_sqaure_in_row = col === 0;
+                if (first_sqaure_in_row){
+                    const month_divider_coords = getMonthDividerCoords(i, year);
+                    if (month_divider_coords) month_dividers.push(month_divider_coords);
+                }
             });
 
     }, [data, index, month_dividers, year]);
