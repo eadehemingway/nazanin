@@ -1,6 +1,6 @@
 import { LAYERS, LAYER_NAMES } from "../data/CONSTANTS";
-import { getPoliticsDividers } from "./getPoliticsDividers";
-import { getLocationsDividers } from "./getLocationsDividers";
+import { getPoliticsDividers } from "./getDividersPolitics";
+import { getLocationsDividers } from "./getDividersLocations";
 
 export function getDividerPathLookup(){
     const obj = {};

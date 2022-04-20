@@ -3,8 +3,8 @@ import * as d3 from "d3";
 import { lookup_articles } from "../data/lookup_articles";
 import { getDayJsYear } from "./utils";
 import { LAYER_NAMES, LAYERS, MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
-import { getLocationsFill } from "./getLocationFill";
-import { getPoliticsFill } from "./getPoliticsFill";
+import { getLocationsFill } from "./getFillLocation";
+import { getPoliticsFill } from "./getFillPolitics";
 
 function getDateFromIndex(year, i){
     const dayjs_year = getDayJsYear(year);

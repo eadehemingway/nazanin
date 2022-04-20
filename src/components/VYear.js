@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getYearData } from "../services/getYearData";
+import { getYearData } from "../services/getDataYear";
 import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";

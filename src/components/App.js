@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 import { TextContainer } from "./TTContainer";
-import { SvgVisual } from "./SvgVisual";
+import { SvgVisual } from "./VSvg";
 import { LAYER_NAMES } from "../data/CONSTANTS";
-import { getDividerPathLookup } from "../services/getDividerPathLookup";
+import { getDividerPathLookup } from "../services/getDataDividers";
 
 
 
