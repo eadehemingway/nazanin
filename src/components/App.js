@@ -18,36 +18,35 @@ function App() {
     }, []);
 
     useEffect(()=> {
-
         // update fills
         d3
             .selectAll("rect")
             .transition()
             .duration(1000)
             .attr("fill", (d)=>{
-                return d.is_in_range ? d.colors[layer][stage] : "transparent";
+                return d.is_in_range ? d[`${layer}-fill`] ? "red": "pink": "transparent";
             });
 
         // update dividors
         // const new_divider_data = [];
-        const new_divider_data = divider_path_lookups[layer][stage];
-        const dividers =  d3.select("svg")
-            .selectAll(".dividers")
-            .data(new_divider_data);
+        // const new_divider_data = divider_path_lookups[layer][stage];
+        // const dividers =  d3.select("svg")
+        //     .selectAll(".dividers")
+        //     .data(new_divider_data);
 
-        const entering_dividers = dividers
-            .enter()
-            .append("path")
-            .attr("class", "dividers");
+        // const entering_dividers = dividers
+        //     .enter()
+        //     .append("path")
+        //     .attr("class", "dividers");
 
-        const update_dividers = entering_dividers.merge(dividers);
-        update_dividers.attr("d", (d)=>{
-            return d.path;
-        })
-            .attr("stroke-width", 7)
-            .attr("stroke", (d, i)=> {
-                return "red";
-            }).attr("fill", "none");
+        // const update_dividers = entering_dividers.merge(dividers);
+        // update_dividers.attr("d", (d)=>{
+        //     return d.path;
+        // })
+        //     .attr("stroke-width", 7)
+        //     .attr("stroke", (d, i)=> {
+        //         return "red";
+        //     }).attr("fill", "none");
 
 
     }, [layer, stage]);

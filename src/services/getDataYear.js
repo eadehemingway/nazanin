@@ -3,8 +3,6 @@ import * as d3 from "d3";
 import { lookup_articles } from "../data/lookup_articles";
 import { getDayJsYear } from "./utils";
 import { LAYER_NAMES, LAYERS, MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
-import { getLocationsFill } from "./getFillLocation";
-import { getPoliticsFill } from "./getFillPolitics";
 
 function getDateFromIndex(year, i){
     const dayjs_year = getDayJsYear(year);
@@ -24,7 +22,20 @@ export function getYearData(year){
     return new Array(full_year).fill(null).map((d,i)=> {
         const date_as_string = getDateFromIndex(year, i + 1);
         const date_as_date = new Date(date_as_string);
-        const colors = getColorsObj(date_as_string);
+        let layer_fills = {};
+        LAYERS.forEach((l)=>{
+            const property_name = `${l.name}-fill`;
+            let fill_value = false;
+            if (l.type === "fill"){
+                for (let i = 0; i < l.events.length; i++) {
+                    if (fill_value) { break; }
+                    const row = l.events[i];
+                    fill_value = date_as_date > row.start_date && date_as_date < row.end_date;
+                }
+
+            }
+            layer_fills[property_name] = fill_value;
+        });
 
         return {
             raw_date: date_as_date,
@@ -34,34 +45,12 @@ export function getYearData(year){
             hunger: i % 2 === 0,
             day_index: i,
             is_in_range: getIsInRange(date_as_date),
-            colors
+            ...layer_fills
         };
     });
 }
 
 
-function getColorsObj(date){
-    const obj = {};
-    LAYERS.forEach((lay_obj)=> {
-        const layer_obj = {};
-        lay_obj.text_arr.forEach((_, stage_index)=>{
-            layer_obj[stage_index] = getFill(date, lay_obj.name, stage_index);
-        });
-        obj[lay_obj.name] = layer_obj;
-    });
-    return obj;
-}
-
-function getFill(date, layer, stage){
-    switch (layer) {
-    case LAYER_NAMES.politics:
-        return getPoliticsFill(date, stage);
-    case LAYER_NAMES.location:
-        return getLocationsFill(date, stage);
-    default:
-        return "sienna";
-    }
-}
 
 
 

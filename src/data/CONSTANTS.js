@@ -11,11 +11,33 @@ export const LAYER_NAMES = {
 export const LAYERS = [
     {
         name: LAYER_NAMES.politics,
-        text_arr: ["nine", "yeah", "huuu"]
+        text_arr: ["nine", "yeah", "huuu"],
+        type: "fill",
+        events: [
+            {
+                start_date: new Date("April 03, 2016 00:00:00"),
+                end_date: new Date("April 29, 2016 00:00:00")
+            },
+            {
+                start_date: new Date("June 03, 2019 00:00:00"),
+                end_date: new Date("June 20, 2019 00:00:00")
+            }
+        ]
     },
     {
         name: LAYER_NAMES.location,
-        text_arr: ["cock", "yuuu", "lana", "minl"]
+        text_arr: ["cock", "yuuu", "lana", "minl"],
+        type: "fill",
+        events: [
+            {
+                start_date: new Date("April 03, 2020 00:00:00"),
+                end_date: new Date("April 30, 2020 00:00:00")
+            },
+            {
+                start_date: new Date("April 03, 2021 00:00:00"),
+                end_date: new Date("April 04, 2021 00:00:00")
+            }
+        ]
     },
 ];
 

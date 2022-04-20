@@ -36,10 +36,9 @@ export function YearViz({ year, index }){
                 const row_index = getRow(i, year);
                 return getY(row_index);
             })
-            .attr("stroke", (d)=>  d.is_in_range ? "grey" : "transparent")
+            .attr("stroke", (d)=>  d.is_in_range ? "black" : "transparent")
             .attr("fill", "transparent")
             .transition()
-            .attr("stroke-opacity", 1)
             .attr("fill", (d,i) =>  d.is_in_range ? "pink" : "transparent")
             .each((_,i)=>{
                 const month_divider_coords = getMonthDividerCoords(i, year);

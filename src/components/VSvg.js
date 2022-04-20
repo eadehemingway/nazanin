@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { YearViz } from "./VYear";
 
 export function SvgVisual(){
+
     const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022];
     return (
         <Container>
