@@ -18,3 +18,6 @@ export const LAYERS = [
         text_arr: ["cock", "yuuu", "lana", "minl"]
     },
 ];
+
+export const MIN_DATE = new Date("April 03, 2016 00:00:00");
+export const MAX_DATE = new Date("March 16, 2022 00:00:00");

@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { processData } from "../services/process_data";
-import { getColumn , getRow, getX, getY } from "../services/utils";
+import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
 import { BOX_SIZE } from "../data/CONSTANTS.js";
@@ -82,10 +82,12 @@ export function YearViz({ year, index, layer, stage }){
             .append("path")
             .attr("class", "month-dividers")
             .attr("d", (d)=> {
-                console.log("getMonthDividerPaths(d.x, d.y):", getMonthDividerPaths(d.x, d.y));
                 return getMonthDividerPaths(d.x, d.y);})
             .attr("stroke-width", 2)
-            .attr("stroke", "#333")
+            .attr("stroke", (d, i)=> {
+                const is_month_in_range = getIsMonthInRange(year, i);
+                return is_month_in_range ? "#333" : "transparent";
+            })
             .attr("fill", "none");
 
     }, [year, month_dividers]);
@@ -97,7 +99,10 @@ export function YearViz({ year, index, layer, stage }){
             .data(MONTHS)
             .enter()
             .append("text")
-            .text(d=> d)
+            .text((d,i)=> {
+                const is_month_in_range = getIsMonthInRange(year, i);
+                return is_month_in_range ? d : "";
+            })
             .attr("x", -20)
             .attr("y", (d,i) => (i * (4.4 * BOX_SIZE)) + 30)
             .attr("font-size", "10px");

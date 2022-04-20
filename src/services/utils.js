@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
 import isLeapYear from "dayjs/plugin/isLeapYear";
-import { COLUMNS, BOX_SIZE } from "../data/CONSTANTS";
+import { COLUMNS, BOX_SIZE, MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
 
 dayjs().format();
 dayjs.extend(dayOfYear);
@@ -45,3 +45,12 @@ export function getY(i){
     return i * BOX_SIZE;
 }
 
+
+
+export function getIsMonthInRange(year, month_index){
+    const month_before_range = year === MIN_DATE.getFullYear() && month_index < MIN_DATE.getMonth();
+    const month_after_range = year === MAX_DATE.getFullYear() && month_index > (MAX_DATE.getMonth() -1); // the minus one is cos we dont want the end divider of march
+    if (month_before_range || month_after_range) return false;
+    else return true;
+
+}
