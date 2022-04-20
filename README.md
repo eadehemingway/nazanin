@@ -9,4 +9,5 @@
 
 
 ## next steps
-- refactor getMonthDividerCoords function so that i can use it both for month dividers and also for big dividers.
+- get the highlight paths working (similar to divider paths)
+- use real data (i.e. get the data from spreadsheet into structure of LAYERS object)

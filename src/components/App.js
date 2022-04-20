@@ -42,9 +42,9 @@ function App() {
         update_dividers.attr("d", (d)=>{
             return d.path;
         })
-            .attr("stroke-width", 7)
+            .attr("stroke-width", 5)
             .attr("stroke", (d, i)=> {
-                return "red";
+                return "black";
             }).attr("fill", "none");
 
         dividers.exit().remove();

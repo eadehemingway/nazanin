@@ -18,5 +18,8 @@ export function getPoliticsDividers(stage){
 
 function constructPathFromDate(date){
     const coords = getDividerCoords(date);
-    return  getDividerPaths(coords);
+    const year = date.getFullYear();
+    const year_index = year - 2016;
+
+    return  getDividerPaths({ ...coords, year_index });
 }
