@@ -23,18 +23,24 @@ export function getYearData(year){
         const date_as_string = getDateFromIndex(year, i + 1);
         const date_as_date = new Date(date_as_string);
         let layer_fills = {};
+        let layer_descriptions = {};
         LAYERS.forEach((l)=>{
-            const property_name = `${l.name}-fill`;
+            const fill_property_name = `${l.name}-fill`;
+            const description_property_name = `${l.name}-description`;
             let fill_value = false;
-            if (l.type === "fill"){
-                for (let i = 0; i < l.events.length; i++) {
-                    if (fill_value) { break; }
-                    const row = l.events[i];
-                    fill_value = date_as_date > row.start_date && date_as_date < row.end_date;
-                }
+            let description = "";
 
+            for (let i = 0; i < l.events.length; i++) {
+                if (fill_value) { break; }
+                const event = l.events[i];
+                const date_in_event = date_as_date > event.start_date && date_as_date < event.end_date;
+                if (date_in_event) description = event.description;
+                if (l.type === "fill" && date_in_event) fill_value = true;
             }
-            layer_fills[property_name] = fill_value;
+
+
+            layer_fills[fill_property_name] = fill_value;
+            layer_descriptions[description_property_name] = description;
         });
 
         return {
@@ -45,7 +51,8 @@ export function getYearData(year){
             hunger: i % 2 === 0,
             day_index: i,
             is_in_range: getIsInRange(date_as_date),
-            ...layer_fills
+            ...layer_fills,
+            ...layer_descriptions
         };
     });
 }

@@ -15,13 +15,13 @@ export const LAYERS = [
         events: [
             {
                 id: "w",
-                description: "hhhh",
+                description: "Boris",
                 start_date: new Date("April 03, 2016 00:00:00"),
                 end_date: new Date("April 29, 2016 00:00:00")
             },
             {
                 id: "q",
-                description: "hhhh",
+                description: "Hunt",
                 start_date: new Date("June 03, 2019 00:00:00"),
                 end_date: new Date("June 20, 2019 00:00:00")
             }
@@ -33,13 +33,13 @@ export const LAYERS = [
         events: [
             {
                 id: "a",
-                description: "hhhh",
+                description: "Kerman",
                 start_date: new Date("April 03, 2020 00:00:00"),
                 end_date: new Date("April 30, 2020 00:00:00")
             },
             {
                 id: "b",
-                description: "hhhh",
+                description: "Evin",
                 start_date: new Date("April 03, 2021 00:00:00"),
                 end_date: new Date("April 04, 2021 00:00:00")
             }
