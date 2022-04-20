@@ -6,7 +6,7 @@ export function getDividerPathLookup(){
     const obj = {};
     LAYERS.forEach((lay_obj)=> {
         const layer_obj = {};
-        lay_obj.text_arr.forEach((_, stage_index)=>{
+        lay_obj.events.forEach((_, stage_index)=>{
             layer_obj[stage_index] = getDividerPathForStage(lay_obj.name, stage_index);
         });
         obj[lay_obj.name] = layer_obj;

@@ -14,7 +14,7 @@ export function TextContainer({ setLayer, setStage }){
             {LAYERS.map((l,i)=> <TTLayer
                 key={i}
                 layer={l.name}
-                text_arr={l.text_arr}
+                events={l.events}
                 setLayer={setLayer}
                 setStage={setStage}
                 tl={tl}

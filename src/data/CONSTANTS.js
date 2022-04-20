@@ -11,14 +11,17 @@ export const LAYER_NAMES = {
 export const LAYERS = [
     {
         name: LAYER_NAMES.politics,
-        text_arr: ["nine", "yeah", "huuu"],
         type: "fill",
         events: [
             {
+                id: "w",
+                description: "hhhh",
                 start_date: new Date("April 03, 2016 00:00:00"),
                 end_date: new Date("April 29, 2016 00:00:00")
             },
             {
+                id: "q",
+                description: "hhhh",
                 start_date: new Date("June 03, 2019 00:00:00"),
                 end_date: new Date("June 20, 2019 00:00:00")
             }
@@ -26,14 +29,17 @@ export const LAYERS = [
     },
     {
         name: LAYER_NAMES.location,
-        text_arr: ["cock", "yuuu", "lana", "minl"],
         type: "fill",
         events: [
             {
+                id: "a",
+                description: "hhhh",
                 start_date: new Date("April 03, 2020 00:00:00"),
                 end_date: new Date("April 30, 2020 00:00:00")
             },
             {
+                id: "b",
+                description: "hhhh",
                 start_date: new Date("April 03, 2021 00:00:00"),
                 end_date: new Date("April 04, 2021 00:00:00")
             }

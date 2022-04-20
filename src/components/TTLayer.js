@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
 import { useEffect } from "react";
 
-export function TTLayer({ layer, setLayer, tl, text_arr, setStage }){
+export function TTLayer({ layer, setLayer, tl, events, setStage }){
     const inner_tl = gsap.timeline({});
 
     useEffect(() => {
@@ -23,9 +23,9 @@ export function TTLayer({ layer, setLayer, tl, text_arr, setStage }){
     return (
 
         <TextWrapper id={layer}>
-            {text_arr.map((t,i)=> <TTText
-                text={t}
-                key={`${t}-${i}`}
+            {events.map((t,i)=> <TTText
+                text={t.description}
+                key={`${t.id}-${i}`}
                 inner_tl={inner_tl}
                 index={i}
                 setStage={setStage}
