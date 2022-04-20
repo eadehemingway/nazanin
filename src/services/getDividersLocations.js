@@ -1,4 +1,4 @@
 
-export function getLocationsDividers(){
-    return [{ path: null }];
+export function getLocationsDividers(stage){
+    return [];
 }
