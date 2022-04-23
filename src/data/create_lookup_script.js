@@ -1,5 +1,6 @@
 import { data } from "./data";
 
+// this is if we want the actual max amount of articles on one day (but otherwise we can our own max)
 let max_articles;
 
 function createLookup(){
