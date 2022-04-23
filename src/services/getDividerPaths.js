@@ -32,14 +32,15 @@ function getDividerCoords(date){
 }
 
 function getDividerPaths({ x_two, y_two, y_three, year_index }){
-    const tp = TOP_PADDING + BOX_SIZE;
-    const x_one = YEAR_PADDING * (year_index + 1); // left of viz
-    const x_three = x_one + BOX_SIZE * COLUMNS; // right of viz
-    const y_one = tp + (52 * BOX_SIZE); // height of viz (bottom of viz)
-    const y_four = tp; // top of viz
-    x_two += x_one;
-    y_two += tp;
-    y_three += tp;
+    const x_one = (YEAR_PADDING * (year_index + 1)) - BOX_SIZE; // left of viz
+    x_two += x_one + BOX_SIZE;
+    const x_three = x_one + (BOX_SIZE * COLUMNS) + (BOX_SIZE * 2); // right of viz
+
+    const y_one = TOP_PADDING + (52 * BOX_SIZE) + BOX_SIZE; // height of viz (bottom of viz)
+    y_two += TOP_PADDING + BOX_SIZE;
+    y_three += TOP_PADDING + BOX_SIZE;
+    const y_four = TOP_PADDING; // top of viz
+
     return `M${x_one} ${y_one} L${x_one} ${y_two} L${x_two} ${y_two} L${x_two} ${y_three} L${x_three} ${y_three} L${x_three} ${y_four}`;
 }
 
