@@ -11,7 +11,9 @@ import { getDividerPathLookup } from "../services/getDataDividers";
 
 function App() {
     const [stage, setStage] = useState(0);
+    console.log("stage:", stage);
     const [layer, setLayer] = useState(LAYER_NAMES.politics);
+    console.log("layer:", layer);
 
     const divider_path_lookups = useMemo(()=>{
         return getDividerPathLookup();
@@ -29,6 +31,7 @@ function App() {
 
         // update dividors
         const new_divider_data = divider_path_lookups[layer][stage];
+        console.log("new_divider_data:", new_divider_data);
         const dividers =  d3.select("svg")
             .selectAll(".dividers")
             .data(new_divider_data);
