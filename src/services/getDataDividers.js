@@ -7,7 +7,7 @@ export function getDividerPathLookup(){
     LAYERS.forEach((lay_obj)=> {
         const layer_obj = {};
         lay_obj.events.forEach((_, stage_index)=>{
-            layer_obj[stage_index] = getDividerPathForLayer(lay_obj.name, stage_index);
+            layer_obj[stage_index] = getDividerPathForLayer(lay_obj, stage_index);
         });
         obj[lay_obj.name] = layer_obj;
     });
@@ -15,9 +15,9 @@ export function getDividerPathLookup(){
 }
 
 function getDividerPathForLayer(layer, stage){
-    if (layer.type === "fill") return [];
+    // if (layer.type === "fill") return [];
 
-    switch (layer) {
+    switch (layer.name) {
     case LAYER_NAMES.politics:
         return getPoliticsDividers(stage);
     case LAYER_NAMES.location:
