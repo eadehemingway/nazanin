@@ -6,7 +6,6 @@ import { TTLayer } from "./TTLayer";
 import { LAYERS } from "../data/CONSTANTS";
 gsap.registerPlugin(ScrollTrigger);
 
-
 export function TextContainer({ setLayer, setStage }){
     const tl = useMemo(()=> gsap.timeline({}), []);
     return (
@@ -25,9 +24,10 @@ export function TextContainer({ setLayer, setStage }){
 
 const ScrollContainer = styled.div`
     position:absolute;
-    width: 100%;
+    width: calc(100% + 20px);
     height: 100vh;
-    overflow:scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

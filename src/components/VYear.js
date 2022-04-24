@@ -6,6 +6,10 @@ import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
 import { BOX_SIZE , TOP_PADDING, YEAR_PADDING } from "../data/CONSTANTS.js";
 
+const MONTH_DIVIDER_COLOR = "#666";
+const DAY_STROKE_COLOR = "#333";
+const DAY_COLOR = "#000";
+
 export function YearViz({ year, index }){
     const month_dividers = useMemo(()=> [], []);
     const data = useMemo(()=>{
@@ -35,10 +39,11 @@ export function YearViz({ year, index }){
                 const row_index = getRow(i, year);
                 return getY(row_index);
             })
-            .attr("stroke", (d)=>  d.is_in_range ? "black" : "transparent")
+            .attr("stroke", (d)=>  d.is_in_range ? DAY_STROKE_COLOR : "transparent")
+            .attr("stroke-width", 0.5)
             .attr("fill", "transparent")
             .transition()
-            .attr("fill", (d,i) =>  d.is_in_range ? "pink" : "transparent")
+            .attr("fill", (d,i) =>  d.is_in_range ? DAY_COLOR : "transparent")
             .each((_,i)=>{
                 const col = getColumn(i, year);
                 const first_sqaure_in_row = col === 0;
@@ -67,6 +72,7 @@ export function YearViz({ year, index }){
             .enter()
             .append("text")
             .attr("class", "day-labels")
+            .attr("opacity", "0.5")
             .text(d=> d)
             .attr("x", (d, i) => getX(i))
             .attr("y",  - 15)
@@ -83,10 +89,10 @@ export function YearViz({ year, index }){
             .attr("class", "month-dividers")
             .attr("d", (d)=> {
                 return getMonthDividerPaths(d.x, d.y);})
-            .attr("stroke-width", 2)
+            .attr("stroke-width", 0.5)
             .attr("stroke", (d, i)=> {
                 const is_month_in_range = getIsMonthInRange(year, i);
-                return is_month_in_range ? "#333" : "transparent";
+                return is_month_in_range ? MONTH_DIVIDER_COLOR : "transparent";
             })
             .attr("fill", "none");
 
@@ -105,6 +111,7 @@ export function YearViz({ year, index }){
             })
             .attr("x", -20)
             .attr("y", (d,i) => (i * (4.4 * BOX_SIZE)) + 30)
+            .attr("opacity", "0.5")
             .attr("font-size", "10px");
 
     }, [year]);

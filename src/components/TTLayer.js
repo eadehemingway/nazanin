@@ -38,14 +38,13 @@ export function TTLayer({ layer, setLayer, tl, events, setStage }){
 
 
 const TextWrapper = styled.div`
-    width: 30%;
-    border: 2px solid red;
-    background: linen;
+    width: 15%;
+    background: #111;
     display:flex;
     flex-direction: column;
     min-height: 50vh;
-    margin-top: 300px;
-    margin-bottom: 600px;
+    margin: 300px 0px 600px 0px;
     justify-content: space-between;
+    margin-right: 15%;
 `;
 

@@ -6,8 +6,8 @@ import { SvgVisual } from "./VSvg";
 import { LAYER_NAMES } from "../data/CONSTANTS";
 import { getDividerPathLookup } from "../services/getDataDividers";
 
-
-
+const FILL_COLOR = "#2a52d1";
+const BLANK_COLOR = "transparent";
 
 function App() {
     const [stage, setStage] = useState(0);
@@ -26,7 +26,7 @@ function App() {
             .transition()
             .duration(1000)
             .attr("fill", (d)=>{
-                return d.is_in_range ? d[`${layer}-fill`] ? "red": "pink": "transparent";
+                return d.is_in_range ? d[`${layer}-fill`] ? FILL_COLOR: BLANK_COLOR: "transparent";
             });
 
         // update dividors
@@ -45,9 +45,9 @@ function App() {
         update_dividers.attr("d", (d)=>{
             return d.path;
         })
-            .attr("stroke-width", 5)
+            .attr("stroke-width", 1)
             .attr("stroke", (d, i)=> {
-                return "black";
+                return "#fff";
             }).attr("fill", "none");
 
         dividers.exit().remove();
@@ -55,14 +55,43 @@ function App() {
 
     return (
         <PageContainer>
+            <Panel>
+                <Title>2,173</Title>
+            </Panel>
             <SvgVisual/>
             <TextContainer setStage={setStage} setLayer={setLayer}/>
+            <Panel style={{ position: "absolute", right: "0px" }}>
+                <Title>days</Title>
+            </Panel>
         </PageContainer>
     );
 }
 
+const Panel = styled.div`
+    width: 15%;
+    font-size: 126px;
+`;
+
+const Title = styled.div`
+    font-family: fairweather;
+    font-weight: 800;
+    width: calc(100% - 20px);
+    font-size: 126px;
+    color: #ffffff;
+    margin: 40vh 0px 0px 20px;
+`;
+
 const PageContainer = styled.div`
-    display:flex;
+    display: flex;
+    background: #000000;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    font-family: code-saver, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    fill: #fff;
 `;
 
 export default App;
