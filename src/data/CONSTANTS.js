@@ -2,13 +2,15 @@
 
 export const COLUMNS = 7;
 export const BOX_SIZE = 10;
+export const COLUMN_WIDTH = BOX_SIZE * 7;
 
 export const LAYER_NAMES = {
     politics: "politics",
     location: "location"
 };
 export const TOP_PADDING = 150;
-export const YEAR_PADDING = 100;
+export const LEFT_PADDING = 30;
+export const YEAR_GUTTER = 20;
 
 export const LAYERS = [
     {

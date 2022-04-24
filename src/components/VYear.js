@@ -1,10 +1,10 @@
 import * as d3 from "d3";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { getYearData } from "../services/getDataYear";
 import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
-import { BOX_SIZE , TOP_PADDING, YEAR_PADDING } from "../data/CONSTANTS.js";
+import { BOX_SIZE, COLUMN_WIDTH, TOP_PADDING, LEFT_PADDING, YEAR_GUTTER } from "../data/CONSTANTS.js";
 
 const MONTH_DIVIDER_COLOR = "#666";
 const DAY_STROKE_COLOR = "#333";
@@ -18,8 +18,7 @@ export function YearViz({ year, index }){
 
 
     const drawYear = useCallback(()=>{
-
-        const x_padding = YEAR_PADDING * (index + 1);
+        const x_padding = LEFT_PADDING + ((YEAR_GUTTER + COLUMN_WIDTH) * index);
         const group = d3.select("svg")
             .append("g")
             .attr("class", `group-${year}`)
@@ -98,32 +97,13 @@ export function YearViz({ year, index }){
 
     }, [month_dividers, year]);
 
-    const drawMonthLabels = useCallback(()=>{
-        const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        d3.select(`.group-${year}`)
-            .selectAll(".month-labels")
-            .data(MONTHS)
-            .enter()
-            .append("text")
-            .text((d,i)=> {
-                const is_month_in_range = getIsMonthInRange(year, i);
-                return is_month_in_range ? d : "";
-            })
-            .attr("x", -20)
-            .attr("y", (d,i) => (i * (4.4 * BOX_SIZE)) + 30)
-            .attr("opacity", "0.5")
-            .attr("font-size", "10px");
-
-    }, [year]);
-
     useEffect(()=> {
         if (!data.length) return;
         drawYear();
-        drawMonthLabels();
         drawMonthDividers();
         drawDayLabels();
         drawYearLabel();
-    }, [data, drawDayLabels, drawYear, drawMonthDividers, drawYearLabel, drawMonthLabels]);
+    }, [data, drawDayLabels, drawYear, drawMonthDividers, drawYearLabel]);
 
     return null;
 }

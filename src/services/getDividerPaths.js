@@ -1,4 +1,4 @@
-import { BOX_SIZE, COLUMNS, TOP_PADDING, YEAR_PADDING, LAYERS } from "../data/CONSTANTS";
+import { BOX_SIZE, COLUMN_WIDTH, COLUMNS, TOP_PADDING, LEFT_PADDING, LAYERS, YEAR_GUTTER } from "../data/CONSTANTS";
 import dayjs from "dayjs";
 import { getColumn, getRow, getX, getY } from "./utils";
 
@@ -32,7 +32,7 @@ function getDividerCoords(date){
 }
 
 function getDividerPaths({ x_two, y_two, y_three, year_index }){
-    const x_one = (YEAR_PADDING * (year_index + 1)) - BOX_SIZE; // left of viz
+    const x_one = LEFT_PADDING + ((YEAR_GUTTER + COLUMN_WIDTH) * (year_index)) - (YEAR_GUTTER / 2); // left of viz
     x_two += x_one + BOX_SIZE;
     const x_three = x_one + (BOX_SIZE * COLUMNS) + (BOX_SIZE * 2); // right of viz
 
