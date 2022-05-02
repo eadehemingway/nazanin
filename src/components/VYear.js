@@ -4,7 +4,7 @@ import { getYearData } from "../services/getDataYear";
 import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
-import { BOX_SIZE, COLUMN_WIDTH, TOP_PADDING, LEFT_PADDING, YEAR_GUTTER } from "../data/CONSTANTS.js";
+import { BOX_SIZE, COLUMN_WIDTH, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, YEAR_GUTTER } from "../data/CONSTANTS.js";
 
 const MONTH_DIVIDER_COLOR = "#666";
 const DAY_STROKE_COLOR = "#333";
@@ -18,11 +18,11 @@ export function YearViz({ year, index }){
 
 
     const drawYear = useCallback(()=>{
-        const x_padding = LEFT_PADDING + ((YEAR_GUTTER + COLUMN_WIDTH) * index);
+        const x_padding = SPACE_FOR_LEFT_LABELS + ((YEAR_GUTTER + COLUMN_WIDTH) * index);
         const group = d3.select("svg")
             .append("g")
             .attr("class", `group-${year}`)
-            .attr("transform", `translate(${x_padding}, ${TOP_PADDING})`);
+            .attr("transform", `translate(${x_padding}, ${SPACE_FOR_TOP_LABELS})`);
 
         group.selectAll("rect")
             .data(data)

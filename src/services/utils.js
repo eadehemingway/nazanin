@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
 import isLeapYear from "dayjs/plugin/isLeapYear";
-import { COLUMNS, BOX_SIZE, MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
+import { DAY_COLUMNS, BOX_SIZE, MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
 
 dayjs().format();
 dayjs.extend(dayOfYear);
@@ -18,7 +18,7 @@ export function getDayJsYear(year){
 export function getColumn(i, year){
     const start_day_index = getStartDayIndex(year);
     const offset_index = i + start_day_index;
-    const col = offset_index % COLUMNS;
+    const col = offset_index % DAY_COLUMNS;
     return col;
 }
 
@@ -33,7 +33,7 @@ function getStartDayIndex(year){
 export function getRow(i, year){
     const start_day_index = getStartDayIndex(year);
     const offset_index = i + start_day_index;
-    const row = Math.floor(offset_index / COLUMNS);
+    const row = Math.floor(offset_index / DAY_COLUMNS);
     return row;
 }
 
