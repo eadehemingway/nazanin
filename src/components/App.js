@@ -52,13 +52,10 @@ function App() {
 
     return (
         <PageContainer>
-            <Panel>
-                <Title>2,173</Title>
-            </Panel>
             <SvgVisual/>
             <TextContainer setStage={setStage} setLayer={setLayer}/>
             <Panel style={{ position: "absolute", right: "0px" }}>
-                <Title>days</Title>
+                <DaysTitle>days</DaysTitle>
             </Panel>
         </PageContainer>
     );
@@ -69,13 +66,21 @@ const Panel = styled.div`
     font-size: 126px;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
     font-family: fairweather;
     font-weight: 800;
-    width: calc(100% - 20px);
     font-size: 126px;
     color: #ffffff;
+`;
+
+const DaysTitle = styled(Title)`
+    width: calc(100% - 20px);
     margin: 40vh 0px 0px 20px;
+`;
+
+export const TotalTitle = styled(Title)`
+    width: 15%;
+    margin: 40vh 15% 0px 20px;
 `;
 
 const PageContainer = styled.div`

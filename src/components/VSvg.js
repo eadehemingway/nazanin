@@ -27,7 +27,7 @@ const Container = styled.svg`
     display: flex;
     align-self: center;
     overflow: visible;
-    width: calc(55% - ${MARGIN_LEFT + MARGIN_RIGHT}px);
+    width: calc(60% - ${MARGIN_LEFT + MARGIN_RIGHT}px);
     height: ${SVG_HEIGHT}px;
     margin: ${MARGIN_TOP}px ${MARGIN_RIGHT}px ${MARGIN_BOTTOM}px ${MARGIN_LEFT}px;
 `;

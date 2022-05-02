@@ -18,7 +18,7 @@ export function YearViz({ year, index }){
 
 
     const drawYear = useCallback(()=>{
-        const x_padding = SPACE_FOR_LEFT_LABELS + ((YEAR_GUTTER + COLUMN_WIDTH) * index);
+        const x_padding = SPACE_FOR_LEFT_LABELS + (COLUMN_WIDTH * index) + (YEAR_GUTTER * (index + 1));
         const group = d3.select("svg")
             .append("g")
             .attr("class", `group-${year}`)

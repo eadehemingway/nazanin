@@ -32,7 +32,7 @@ function getDividerCoords(date){
 }
 
 function getDividerPaths({ x_two, y_two, y_three, year_index }){
-    const x_one = (SPACE_FOR_LEFT_LABELS + ((YEAR_GUTTER + COLUMN_WIDTH) * (year_index))) - (YEAR_GUTTER / 2); // left of viz
+    const x_one = (SPACE_FOR_LEFT_LABELS + YEAR_GUTTER + ((YEAR_GUTTER + COLUMN_WIDTH) * (year_index))) - (YEAR_GUTTER / 2); // left of viz
     x_two += x_one + BOX_SIZE + (YEAR_GUTTER / 2);
     const x_three = x_one + (BOX_SIZE * DAY_COLUMNS) + YEAR_GUTTER; // right of viz
 

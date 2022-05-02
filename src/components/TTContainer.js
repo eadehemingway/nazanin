@@ -4,12 +4,14 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useMemo } from "react";
 import { TTLayer } from "./TTLayer";
 import { LAYERS } from "../data/CONSTANTS";
+import { TotalTitle } from "./App";
 gsap.registerPlugin(ScrollTrigger);
 
 export function TextContainer({ setLayer, setStage }){
     const tl = useMemo(()=> gsap.timeline({}), []);
     return (
         <ScrollContainer className="scroll-container">
+            <TotalTitle>2,173</TotalTitle>
             {LAYERS.map((l,i)=> <TTLayer
                 key={i}
                 layer={l.name}
