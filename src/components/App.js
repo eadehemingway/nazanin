@@ -1,13 +1,27 @@
 import { useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
+import { Legend } from "./Legend";
 import { TextContainer } from "./TTContainer";
 import { SvgVisual } from "./VSvg";
-import { LAYER_NAMES } from "../data/CONSTANTS";
+import { LAYER_NAMES, BACKGROUND_COLOR } from "../data/CONSTANTS";
 import { getDividerPathLookup } from "../services/getDataDividers";
+import dividers_legend_icon from "../assets/divider_legend_icon.svg";
+import fill_legend_icon from "../assets/fill_legend_icon.svg";
 
 const FILL_COLOR = "#2a52d1";
 const BLANK_COLOR = "transparent";
+
+const dividers = [
+    { id: 1, name: "Foreign Secretaries" },
+    { id: 2, name: "Prime Ministers" },
+    { id: 3, name: "Location" }
+];
+
+const fills = [
+    { id: 1, name: "Solitary confinement" },
+    { id: 2, name: "Daughter’s birthdays" },
+];
 
 function App() {
     const [stage, setStage] = useState(0);
@@ -52,6 +66,10 @@ function App() {
 
     return (
         <PageContainer>
+            <LegendContainer>
+                <Legend options={dividers} icon={dividers_legend_icon}/>
+                <Legend options={fills} icon={fill_legend_icon}/>
+            </LegendContainer>
             <SvgVisual/>
             <TextContainer setStage={setStage} setLayer={setLayer}/>
             <Panel style={{ position: "absolute", right: "0px" }}>
@@ -83,9 +101,16 @@ export const TotalTitle = styled(Title)`
     margin: 40vh 15% 0px 20px;
 `;
 
+const LegendContainer = styled.div`
+	width: 10%;
+	overflow: hidden;
+	display: inline-block;
+	z-index: 5;
+`;
+
 const PageContainer = styled.div`
     display: flex;
-    background: #000000;
+    background: ${BACKGROUND_COLOR};
     overflow: hidden;
     width: 100%;
     height: 100vh;

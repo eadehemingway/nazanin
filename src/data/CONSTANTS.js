@@ -1,5 +1,7 @@
 import { getRow } from "../services/utils";
 
+export const BACKGROUND_COLOR = "#000000";
+
 const NO_OF_YEARS = 7;
 
 const MIN_YEAR_GUTTER = 20;
