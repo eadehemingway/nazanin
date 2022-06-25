@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect } from "react";
 
-export function TTText({ layer, setStage, inner_tl, text, index }){
+export function TTText({ stage,  layer, setStage, inner_tl, text, index }){
     const id = `${layer}-text-${index}`;
 
     useEffect(() => {
@@ -10,15 +10,21 @@ export function TTText({ layer, setStage, inner_tl, text, index }){
             trigger: `#${id}`,
             markers: true,
             start: "0px 300px",
-            end: "bottom 200px",
+            end: "bottom 300px",
             scroller: ".scroll-container",
-            onEnter:()=> setStage(index),
-            onEnterBack:()=> setStage(index)
+            onEnter:()=>{
+                if (stage === index) return;
+                setStage(index);
+            },
+            onEnterBack:()=> {
+                if (stage === index) return;
+                setStage(index);
+            }
         });
 
         inner_tl.add(trigg);
 
-    }, [setStage, index, id, inner_tl]);
+    }, []);
 
     return (
         <P id={id}>{text}</P>
@@ -27,5 +33,7 @@ export function TTText({ layer, setStage, inner_tl, text, index }){
 
 
 const P = styled.p`
+margin: 50px 0;
 border: 3px solid blue;
+min-height: 100px;
 `;

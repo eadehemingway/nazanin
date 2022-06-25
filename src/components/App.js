@@ -25,10 +25,12 @@ const fills = [
 ];
 
 function App() {
-    const [stage, setStage] = useState(0);
-    console.log("stage:", stage);
+    const [stage, setStage] = useState(5);
     const [layer, setLayer] = useState(LAYER_NAMES.location);
+    console.log("stage:", stage);
     console.log("layer:", layer);
+    console.log("----------------------------");
+
 
     const divider_path_lookups = useMemo(()=>{
         return getDividerPathLookup();
@@ -109,7 +111,7 @@ function App() {
                 <Legend options={fills} icon={fill_legend_icon}/>
             </LegendContainer>
             <SvgVisual/>
-            <TextContainer setStage={setStage} setLayer={setLayer}/>
+            <TextContainer setStage={setStage} setLayer={setLayer} stage={stage}/>
             <Panel style={{ position: "absolute", right: "0px" }}>
                 <DaysTitle>days</DaysTitle>
             </Panel>
