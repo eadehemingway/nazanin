@@ -30,8 +30,10 @@ or every end date
 if it is a fill layer then you color these events in.
 maybe we should call them different things. like events and periods? epochs? i think there needs to be different ones for fills highlights and dividors... ? highlights needs to be separate from events. or is it just duplication for fill layers? lets do fill layers first.
 
+highlights are separate properties.
+
+dividers are just lines dividing time. Highlights are lines around filled areas.
 
 ## next steps
-- get the highlight paths working (similar to divider paths).dividers are just lines dividing time. Highlights are lines around filled areas.
-- test and improve scrolling triggers? sort triggers to do with highlights.
+- dividor lines flicker if you have all dividor lines showing at both stages. stop that happening
 - use real data (i.e. get the data from spreadsheet into structure of LAYERS object)

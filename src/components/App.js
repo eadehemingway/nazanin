@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 import { Legend } from "./Legend";
@@ -40,8 +40,11 @@ function App() {
         return getHighlightPathLookup();
     }, []);
 
-    useEffect(()=> {
-        // update fills
+    const new_divider_data = useMemo(()=> {
+        return divider_path_lookups[layer][stage] || [];
+    }, [divider_path_lookups, layer, stage]);
+
+    const updateFills = useCallback(()=>{
         d3
             .selectAll("rect")
             .transition()
@@ -49,9 +52,11 @@ function App() {
             .attr("fill", (d)=>{
                 return d.is_in_range ? d[`${layer}-fill`] ? FILL_COLOR: BLANK_COLOR: "transparent";
             });
+    }, [layer]);
 
-        // update dividors
-        const new_divider_data = divider_path_lookups[layer][stage] || [];
+    const updateDividers = useCallback(()=>{
+        console.log("UPDATING DIVIDERS");
+
         const dividers =  d3.select("svg")
             .selectAll(".dividers")
             .data(new_divider_data);
@@ -59,16 +64,17 @@ function App() {
         const entering_dividers = dividers
             .enter()
             .append("path")
-            .attr("class", "dividers");
+            .attr("class", "dividers")
+            .attr("stroke-width", 0);
+
 
         const update_dividers = entering_dividers.merge(dividers);
-        update_dividers.attr("d", (d)=>{
-            return d.path;
-        })
-
-            .attr("stroke-width", 0)
+        update_dividers
             .transition()
             .duration(1000)
+            .attr("d", (d)=>{
+                return d.path;
+            })
             .attr("stroke-width", 1)
             .attr("stroke", (d, i)=> {
                 return "#fff";
@@ -80,6 +86,10 @@ function App() {
             .attr("stroke-width", 0)
             .remove();
 
+
+    }, [new_divider_data]);
+
+    const updateHighlights = useCallback(()=>{
         // update highlights
         const new_highlight_data = highlight_path_lookups[layer][stage] || [];
 
@@ -102,7 +112,18 @@ function App() {
             }).attr("fill", "none");
 
         highlights.exit().remove();
+
+
+    }, [highlight_path_lookups, layer, stage]);
+
+    useEffect(()=> {
+        updateFills();
+        updateHighlights();
     }, [layer, stage]);
+
+    useEffect(()=> {
+        updateDividers();
+    }, [updateDividers]);
 
     return (
         <PageContainer>
