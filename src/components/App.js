@@ -6,6 +6,7 @@ import { TextContainer } from "./TTContainer";
 import { SvgVisual } from "./VSvg";
 import { LAYER_NAMES, BACKGROUND_COLOR } from "../data/CONSTANTS";
 import { getDividerPathLookup } from "../services/getDividerPathLookup";
+import { getHighlightPathLookup } from "../services/getHighlightPathLookup";
 import dividers_legend_icon from "../assets/divider_legend_icon.svg";
 import fill_legend_icon from "../assets/fill_legend_icon.svg";
 
@@ -25,10 +26,14 @@ const fills = [
 
 function App() {
     const [stage, setStage] = useState(0);
-    const [layer, setLayer] = useState(LAYER_NAMES.location);
+    const [layer, setLayer] = useState(LAYER_NAMES.solitary);
 
     const divider_path_lookups = useMemo(()=>{
         return getDividerPathLookup();
+    }, []);
+
+    const highlight_path_lookups = useMemo(()=>{
+        return getHighlightPathLookup();
     }, []);
 
     useEffect(()=> {
@@ -62,6 +67,29 @@ function App() {
             }).attr("fill", "none");
 
         dividers.exit().remove();
+
+        // update highlights
+        const new_highlight_data = highlight_path_lookups[layer][stage] || [];
+
+        const highlights =  d3.select("svg")
+            .selectAll(".highlights")
+            .data(new_highlight_data);
+
+        const entering_highlights = highlights
+            .enter()
+            .append("path")
+            .attr("class", "highlights");
+
+        const update_highlights = entering_highlights.merge(highlights);
+        update_highlights.attr("d", (d)=>{
+            return d.path;
+        })
+            .attr("stroke-width", 1)
+            .attr("stroke", (d, i)=> {
+                return "red";
+            }).attr("fill", "none");
+
+        highlights.exit().remove();
     }, [layer, stage]);
 
     return (

@@ -12,6 +12,23 @@ Then stages are within a layer, when to reveal which bit of info within that lay
 
 currently isnt a way of staggering fill layers. but thats fine, we will just aim to be able to stagger highlights
 
+- The data structure:
+```
+LAYERS = [{
+    name: string
+    type: dividor | fill
+    events: [{
+        id: string
+        description: string
+        start_date: date
+        end_date: date | null
+    }]
+}]
+```
+if it is a dividor layer then the events are the chunks, so it is between events that there is a dividor? so can do a dividor at every start date
+or every end date
+if it is a fill layer then you color these events in.
+maybe we should call them different things. like events and periods? epochs? i think there needs to be different ones for fills highlights and dividors... ? highlights needs to be separate from events. or is it just duplication for fill layers? lets do fill layers first.
 
 
 ## next steps

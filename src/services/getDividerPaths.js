@@ -13,14 +13,14 @@ export function getAllDividersInLayer(layer_name){
     });
     return all_paths;
 }
-function constructPathFromDate(date){
-    const coords = getDividerCoords(date);
+export function constructPathFromDate(date){
+    const coords = getCoordsFromDate(date);
     const year = date.getFullYear();
     const year_index = year - 2016;
     return  getDividerPaths({ ...coords, year_index });
 }
 
-function getDividerCoords(date){
+export function getCoordsFromDate(date){
     const year = date.getFullYear();
     const day_index = dayjs(date).dayOfYear();
     const column = getColumn(day_index, year);
