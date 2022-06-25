@@ -1,5 +1,4 @@
 import { LAYERS, LAYER_NAMES } from "../data/CONSTANTS";
-import { getPoliticsDividers } from "./getDividersPolitics";
 import { getLocationsDividers } from "./getDividersLocations";
 
 export function getDividerPathLookup(){
@@ -14,12 +13,13 @@ export function getDividerPathLookup(){
     return obj;
 }
 
+
+// this should have a case for every divider layer
 function getDividerPathForLayer(layer, stage){
-    // if (layer.type === "fill") return [];
+
+    if (layer.type === "fill") return [];
 
     switch (layer.name) {
-    case LAYER_NAMES.politics:
-        return getPoliticsDividers(stage);
     case LAYER_NAMES.location:
         return getLocationsDividers(stage);
     default:

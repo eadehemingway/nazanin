@@ -38,24 +38,24 @@ export const COLUMN_WIDTH = BOX_SIZE * DAY_COLUMNS;
 export const SVG_HEIGHT = (BOX_SIZE * DAY_ROWS) + SPACE_FOR_TOP_LABELS;
 
 export const LAYER_NAMES = {
-    politics: "politics",
+    solitary: "solitary",
     location: "location"
 };
 
 export const LAYERS = [
     {
-        name: LAYER_NAMES.politics,
+        name: LAYER_NAMES.solitary,
         type: "fill",
         events: [
             {
                 id: "w",
-                description: "Boris",
+                description: "first solitary",
                 start_date: new Date("April 07, 2016 00:00:00"),
                 end_date: new Date("April 29, 2016 00:00:00")
             },
             {
                 id: "q",
-                description: "Hunt",
+                description: "second solitary",
                 start_date: new Date("June 03, 2019 00:00:00"),
                 end_date: new Date("June 20, 2019 00:00:00")
             }
@@ -63,7 +63,7 @@ export const LAYERS = [
     },
     {
         name: LAYER_NAMES.location,
-        type: "fill",
+        type: "divider",
         events: [
             {
                 id: "a",

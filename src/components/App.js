@@ -5,7 +5,7 @@ import { Legend } from "./Legend";
 import { TextContainer } from "./TTContainer";
 import { SvgVisual } from "./VSvg";
 import { LAYER_NAMES, BACKGROUND_COLOR } from "../data/CONSTANTS";
-import { getDividerPathLookup } from "../services/getDataDividers";
+import { getDividerPathLookup } from "../services/getDividerPathLookup";
 import dividers_legend_icon from "../assets/divider_legend_icon.svg";
 import fill_legend_icon from "../assets/fill_legend_icon.svg";
 
@@ -25,7 +25,7 @@ const fills = [
 
 function App() {
     const [stage, setStage] = useState(0);
-    const [layer, setLayer] = useState(LAYER_NAMES.politics);
+    const [layer, setLayer] = useState(LAYER_NAMES.location);
 
     const divider_path_lookups = useMemo(()=>{
         return getDividerPathLookup();
