@@ -26,7 +26,9 @@ const fills = [
 
 function App() {
     const [stage, setStage] = useState(0);
-    const [layer, setLayer] = useState(LAYER_NAMES.solitary);
+    console.log("stage:", stage);
+    const [layer, setLayer] = useState(LAYER_NAMES.location);
+    console.log("layer:", layer);
 
     const divider_path_lookups = useMemo(()=>{
         return getDividerPathLookup();
@@ -47,7 +49,7 @@ function App() {
             });
 
         // update dividors
-        const new_divider_data = divider_path_lookups[layer][stage];
+        const new_divider_data = divider_path_lookups[layer][stage] || [];
         const dividers =  d3.select("svg")
             .selectAll(".dividers")
             .data(new_divider_data);
@@ -61,12 +63,20 @@ function App() {
         update_dividers.attr("d", (d)=>{
             return d.path;
         })
+
+            .attr("stroke-width", 0)
+            .transition()
+            .duration(1000)
             .attr("stroke-width", 1)
             .attr("stroke", (d, i)=> {
                 return "#fff";
             }).attr("fill", "none");
 
-        dividers.exit().remove();
+        dividers.exit()
+            .transition()
+            .duration(1000)
+            .attr("stroke-width", 0)
+            .remove();
 
         // update highlights
         const new_highlight_data = highlight_path_lookups[layer][stage] || [];

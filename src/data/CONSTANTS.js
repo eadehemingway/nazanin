@@ -39,42 +39,43 @@ export const SVG_HEIGHT = (BOX_SIZE * DAY_ROWS) + SPACE_FOR_TOP_LABELS;
 
 export const LAYER_NAMES = {
     solitary: "solitary",
-    location: "location"
+    location: "location",
+    politics: "politics"
 };
 
 export const LAYERS = [
-    {
-        name: LAYER_NAMES.solitary,
-        type: "fill",
-        events: [
-            {
-                id: "w",
-                description: "first solitary",
-                start_date: new Date("April 07, 2016 00:00:00"),
-                end_date: new Date("April 29, 2016 00:00:00")
-            },
-            {
-                id: "q",
-                description: "second solitary",
-                start_date: new Date("June 03, 2019 00:00:00"),
-                end_date: new Date("June 20, 2019 00:00:00")
-            }
-        ],
-        highlights: [
-            {
-                id: "w",
-                description: "first solitary",
-                start_date: new Date("April 07, 2016 00:00:00"),
-                end_date: new Date("April 29, 2016 00:00:00")
-            },
-            {
-                id: "q",
-                description: "second solitary",
-                start_date: new Date("June 03, 2019 00:00:00"),
-                end_date: new Date("June 20, 2019 00:00:00")
-            }
-        ]
-    },
+    // {
+    //     name: LAYER_NAMES.solitary,
+    //     type: "fill",
+    //     events: [
+    //         {
+    //             id: "w",
+    //             description: "first solitary",
+    //             start_date: new Date("April 07, 2016 00:00:00"),
+    //             end_date: new Date("April 29, 2016 00:00:00")
+    //         },
+    //         {
+    //             id: "q",
+    //             description: "second solitary",
+    //             start_date: new Date("June 03, 2019 00:00:00"),
+    //             end_date: new Date("June 20, 2019 00:00:00")
+    //         }
+    //     ],
+    //     highlights: [
+    //         {
+    //             id: "w",
+    //             description: "first solitary",
+    //             start_date: new Date("April 07, 2016 00:00:00"),
+    //             end_date: new Date("April 29, 2016 00:00:00")
+    //         },
+    //         {
+    //             id: "q",
+    //             description: "second solitary",
+    //             start_date: new Date("June 03, 2019 00:00:00"),
+    //             end_date: new Date("June 20, 2019 00:00:00")
+    //         }
+    //     ]
+    // },
     {
         name: LAYER_NAMES.location,
         type: "divider",
@@ -90,6 +91,25 @@ export const LAYERS = [
                 description: "Evin",
                 start_date: new Date("April 03, 2021 00:00:00"),
                 end_date: new Date("April 04, 2021 00:00:00")
+            }
+        ],
+        highlights: null
+    },
+    {
+        name: LAYER_NAMES.politics,
+        type: "divider",
+        events: [
+            {
+                id: "a",
+                description: "hunt",
+                start_date: new Date("April 03, 2016 00:00:00"),
+                end_date: new Date("April 30, 2016 00:00:00")
+            },
+            {
+                id: "b",
+                description: "bors",
+                start_date: new Date("April 03, 2017 00:00:00"),
+                end_date: new Date("April 04, 2017 00:00:00")
             }
         ],
         highlights: null

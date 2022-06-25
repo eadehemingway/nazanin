@@ -1,5 +1,6 @@
 import { LAYERS, LAYER_NAMES } from "../data/CONSTANTS";
 import { getLocationsDividers } from "./getDividersLocations";
+import { getPoliticsDividers } from "./getDividersPolitics";
 
 export function getDividerPathLookup(){
     const obj = {};
@@ -22,6 +23,8 @@ function getDividerPathForLayer(layer, stage){
     switch (layer.name) {
     case LAYER_NAMES.location:
         return getLocationsDividers(stage);
+    case LAYER_NAMES.politics:
+        return getPoliticsDividers(stage);
     default:
         return [];
     }
