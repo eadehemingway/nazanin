@@ -1,6 +1,7 @@
 import { BOX_SIZE, COLUMN_WIDTH, DAY_COLUMNS, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, LAYERS, YEAR_GUTTER } from "../data/CONSTANTS";
 import dayjs from "dayjs";
 import { getColumn, getRow, getX, getY } from "./utils";
+import { getXLeftOfYear, getXRightOfYear } from "./getDividerPaths";
 
 export function getAllHighlightsInLayer(layer_name){
     const layer_data = LAYERS.find(l=> l.name === layer_name);
@@ -46,10 +47,9 @@ function getCoordsFromDate(date){
 }
 
 function getHighlightTopPath(start_x_two, start_y_two, start_y_three, end_x_two, end_y_two, end_y_three, year_index){
-    const SPACE_FOR_YEARS_TO_LEFT = (YEAR_GUTTER + COLUMN_WIDTH) * year_index;
-    const x_one = SPACE_FOR_LEFT_LABELS + SPACE_FOR_YEARS_TO_LEFT + YEAR_GUTTER; // left of viz
+    const x_one = getXLeftOfYear(year_index); ; // left of viz
     start_x_two += x_one + BOX_SIZE + (YEAR_GUTTER / 2);
-    const x_three = x_one + (BOX_SIZE * DAY_COLUMNS); // right of viz
+    const x_three = getXRightOfYear(x_one); // right of viz
 
     start_y_two += SPACE_FOR_TOP_LABELS + BOX_SIZE;
     start_y_three += SPACE_FOR_TOP_LABELS + BOX_SIZE;

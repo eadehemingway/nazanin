@@ -9,6 +9,8 @@ import { getDividerPathLookup } from "../services/getDividerPathLookup";
 import { getHighlightPathLookup } from "../services/getHighlightPathLookup";
 import dividers_legend_icon from "../assets/divider_legend_icon.svg";
 import fill_legend_icon from "../assets/fill_legend_icon.svg";
+import { getCenterArea } from "../services/utils";
+
 
 const FILL_COLOR = "#2a52d1";
 const BLANK_COLOR = "transparent";
@@ -27,9 +29,7 @@ const fills = [
 function App() {
     const [stage, setStage] = useState(5);
     const [layer, setLayer] = useState(LAYER_NAMES.location);
-    console.log("stage:", stage);
-    console.log("layer:", layer);
-    console.log("----------------------------");
+
 
 
     const divider_path_lookups = useMemo(()=>{
@@ -54,8 +54,44 @@ function App() {
             });
     }, [layer]);
 
+    const updateDividerLabels = useCallback(()=>{
+        const dividers =  d3.select("svg")
+            .selectAll(".divider-labels")
+            .data(new_divider_data);
+
+        const entering_dividers = dividers
+            .enter()
+            .append("text")
+            .attr("class", "divider-labels");
+
+        const update_dividers = entering_dividers.merge(dividers);
+
+        update_dividers
+            .transition()
+            .duration(1000)
+            .text(d => {
+                return d.name;
+            })
+            .attr("x", d=> {
+                const { x } = getCenterArea(d);
+                return x;
+
+            })
+            .attr("y", d => {
+                const { y } = getCenterArea(d);
+                return y;
+            })
+            .attr("text-anchor", "middle");
+
+        dividers.exit()
+            .transition()
+            .duration(1000)
+            .remove();
+
+
+    }, [new_divider_data]);
+
     const updateDividers = useCallback(()=>{
-        console.log("UPDATING DIVIDERS");
 
         const dividers =  d3.select("svg")
             .selectAll(".dividers")
@@ -123,6 +159,7 @@ function App() {
 
     useEffect(()=> {
         updateDividers();
+        updateDividerLabels();
     }, [updateDividers]);
 
     return (
@@ -139,6 +176,8 @@ function App() {
         </PageContainer>
     );
 }
+
+
 
 const Panel = styled.div`
     width: 15%;
