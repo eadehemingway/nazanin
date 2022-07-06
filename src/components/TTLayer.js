@@ -12,7 +12,7 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
         const a = gsap.to(`#${current_layer}`, { scrollTrigger: {
             trigger: `#${current_layer}`,
-            markers: true,
+            // markers: true,
             start: "0px 300px", // 0px from top of element and 300px from top of screen
             end: "bottom 300px",
             onEnter:()=> {

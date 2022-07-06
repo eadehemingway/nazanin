@@ -9,7 +9,7 @@ export function TTText({ stage,  current_layer, setStage, text, index }){
     useEffect(() => {
         const a = gsap.to(`#${id}`, { scrollTrigger: {
             trigger: `#${id}`,
-            markers: true,
+            // markers: true,
             start: "0px 300px",
             end: "bottom 300px",
             onEnter:()=>{

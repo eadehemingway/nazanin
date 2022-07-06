@@ -8,6 +8,7 @@ import { LAYER_NAMES } from "./data/LAYERS";
 import { getDividerPathLookup } from "./services/getDividerPathLookup";
 import { getHighlightPathLookup } from "./services/getHighlightPathLookup";
 import { getCenterArea, BACKGROUND_COLOR } from "./services/utils";
+import "./App.css"
 
 // import dayjs from "dayjs";
 // import dayOfYear from "dayjs/plugin/dayOfYear";
@@ -177,12 +178,6 @@ function App() {
 
     <SvgVisual/>
     <TextContainer setStage={setStage} setFillLayer={setFillLayer} setIsEnd={setIsEnd} setDividerLayer={setDividerLayer}/>
-    {/* <div style={{ backgroundColor: "red", height: "500px", width: "600px" }}>
-    </div>
-    <div style={{ backgroundColor: "blue", height: "500px", width: "600px" }}>
-    </div>
-    <div style={{ backgroundColor: "yellow", height: "500px", width: "600px" }}>
-    </div> */}
 
 </PageContainer>
   );
@@ -199,6 +194,8 @@ const PageContainer = styled.div`
     fill: #fff;
     position:relative;
     justify-content: space-between;
+    overflow: hidden;
+    height: 100%;
 `;
 
 export default App;

@@ -1,24 +1,23 @@
 import styled from "styled-components";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-// gsap.registerPlugin(ScrollTrigger);
 
 export function TTLayerTitle(){
     const $title = useRef(null);
     useEffect(() => {
-        gsap.timeline({
+    if (!$title.current) return
+        const a = gsap.to($title.current, {
             scrollTrigger: {
                 trigger: $title.current,
                 start: "top 50",
                 end: "bottom 200",
-                markers: true,
+                // markers: true,
                 scrub: true,
                 pin: true
             },
         });
-        // return () => animation.scrollTrigger.kill()
+        return () => a.scrollTrigger.kill()
 
     }, []);
 

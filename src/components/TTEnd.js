@@ -12,7 +12,7 @@ export function TTEnd({ setIsEnd }){
                 duration: 8,
                 scrollTrigger: {
                     trigger: ".end-trigger",
-                    markers: true,
+                    // markers: true,
                     start: "0px 300px",
                     end: "bottom 300px",
                     onEnter:()=> setIsEnd(true),

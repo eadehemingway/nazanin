@@ -29,7 +29,7 @@ const Container = styled.svg`
     overflow: visible;
     height: ${SVG_HEIGHT}px;
     margin: ${MARGIN_TOP}px ${MARGIN_RIGHT}px ${MARGIN_BOTTOM}px ${MARGIN_LEFT}px;
-    position: sticky;
+    position: fixed;
     top:0;
 
 `;
