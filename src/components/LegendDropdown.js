@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Listbox } from "@headlessui/react";
-import { BACKGROUND_COLOR } from "../data/CONSTANTS";
+import { BACKGROUND_COLOR } from "../services/utils";
 
 export function LegendDropdown({ backup_label, options, icon, setLayer, layer, setStage }) {
 

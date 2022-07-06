@@ -6,7 +6,7 @@ import { TTLayer } from "./TTLayer";
 import { LAYERS } from "../data/LAYERS";
 // import { TotalTitle } from "./App";
 import { TTEnd } from "./TTEnd";
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLayer }){
     return (

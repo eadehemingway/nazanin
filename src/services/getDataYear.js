@@ -1,8 +1,8 @@
 
 import * as d3 from "d3";
 import { lookup_articles } from "../data/lookup_articles";
-import { getDayJsYear } from "./utils";
-import { MIN_DATE, MAX_DATE } from "../data/CONSTANTS";
+import { getDayJsYear,  MIN_DATE, MAX_DATE  } from "./utils";
+
 import { LAYERS } from "../data/LAYERS";
 
 function getDateFromIndex(year, i){

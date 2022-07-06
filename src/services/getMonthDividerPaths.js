@@ -1,4 +1,4 @@
-import { BOX_SIZE, DAY_COLUMNS } from "../data/CONSTANTS";
+import { BOX_SIZE, DAY_COLUMNS } from "../services/utils";
 
 export function getMonthDividerPaths(x_two_and_three, y_one_and_two){
     const x_one = 0;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { YearViz } from "./VYear";
-import { BOX_SIZE , SPACE_FOR_TOP_LABELS, SVG_HEIGHT, MARGIN_TOP, MARGIN_RIGHT, MARGIN_BOTTOM, MARGIN_LEFT } from "../data/CONSTANTS.js";
+import { BOX_SIZE , SPACE_FOR_TOP_LABELS, SVG_HEIGHT, MARGIN_TOP, MARGIN_RIGHT, MARGIN_BOTTOM, MARGIN_LEFT } from "../services/utils";
 
 export function SvgVisual(){
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

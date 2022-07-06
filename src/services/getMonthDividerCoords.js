@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { BOX_SIZE } from "../data/CONSTANTS.js";
-import { getDayJsYear,getColumn, getRow, getX, getY } from "./utils";
+
+import { getDayJsYear,getColumn, getRow, getX, getY, BOX_SIZE } from "./utils";
 
 function getMonthIndex (day_num, year){
     const dayjs_year = getDayJsYear(year);

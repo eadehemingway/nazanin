@@ -10,22 +10,22 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
     useEffect(() => {
 
-        // gsap.to(`#${current_layer}`, { scrollTrigger: {
-        //     trigger: `#${current_layer}`,
-        //     markers: true,
-        //     start: "0px 300px", // 0px from top of element and 300px from top of screen
-        //     end: "bottom 300px",
-        //     onEnter:()=> {
-        //         setLayer(current_layer);
-        //         setStage(0);
-        //         unsetLayer(null);
-        //     },
-        //     onEnterBack:()=> {
-        //         unsetLayer(null);
-        //         setLayer(current_layer);
-        //     }
-        // }
-        // });
+        gsap.to(`#${current_layer}`, { scrollTrigger: {
+            trigger: `#${current_layer}`,
+            markers: true,
+            start: "0px 300px", // 0px from top of element and 300px from top of screen
+            end: "bottom 300px",
+            onEnter:()=> {
+                setLayer(current_layer);
+                setStage(0);
+                unsetLayer(null);
+            },
+            onEnterBack:()=> {
+                unsetLayer(null);
+                setLayer(current_layer);
+            }
+        }
+        });
     }, [ current_layer]);
     return (
 

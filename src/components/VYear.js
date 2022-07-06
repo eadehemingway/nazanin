@@ -4,7 +4,7 @@ import { getYearData } from "../services/getDataYear";
 import { getColumn , getRow, getX, getY, getIsMonthInRange } from "../services/utils";
 import { getMonthDividerCoords } from "../services/getMonthDividerCoords";
 import { getMonthDividerPaths } from "../services/getMonthDividerPaths";
-import { BOX_SIZE, COLUMN_WIDTH, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, YEAR_GUTTER } from "../data/CONSTANTS.js";
+import { BOX_SIZE, COLUMN_WIDTH, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, YEAR_GUTTER } from "../services/utils";
 
 const MONTH_DIVIDER_COLOR = "#666";
 const DAY_STROKE_COLOR = "#333";

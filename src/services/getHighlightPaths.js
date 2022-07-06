@@ -1,7 +1,7 @@
-import { BOX_SIZE, COLUMN_WIDTH, DAY_COLUMNS, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, YEAR_GUTTER } from "../data/CONSTANTS";
+
 import { LAYERS } from "../data/LAYERS";
 import dayjs from "dayjs";
-import { getColumn, getRow, getX, getY } from "./utils";
+import { getColumn, getRow, getX, getY, BOX_SIZE, COLUMN_WIDTH, DAY_COLUMNS, SPACE_FOR_TOP_LABELS, SPACE_FOR_LEFT_LABELS, YEAR_GUTTER } from "./utils";
 import { getXLeftOfYear, getXRightOfYear } from "./getDividerPaths";
 
 export function getAllHighlightsInLayer(layer_name){
