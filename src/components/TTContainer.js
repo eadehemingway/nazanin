@@ -35,5 +35,4 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    border: 10px solid orange;
 `;

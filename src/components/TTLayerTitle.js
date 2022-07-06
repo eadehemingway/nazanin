@@ -18,6 +18,7 @@ export function TTLayerTitle(){
                 pin: true
             },
         });
+        // return () => animation.scrollTrigger.kill()
 
     }, []);
 

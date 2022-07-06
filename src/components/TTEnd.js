@@ -7,7 +7,7 @@ export function TTEnd({ setIsEnd }){
 
     useEffect(() => {
 
-        gsap.to(".end-trigger",
+      const animation =  gsap.to(".end-trigger",
             {
                 duration: 8,
                 scrollTrigger: {
@@ -18,6 +18,7 @@ export function TTEnd({ setIsEnd }){
                     onEnter:()=> setIsEnd(true),
                     onLeaveBack: () => setIsEnd(false)
                 } });
+        return () => animation.scrollTrigger.kill()
 
     }, []);
 
