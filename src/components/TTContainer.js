@@ -4,15 +4,15 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useMemo } from "react";
 import { TTLayer } from "./TTLayer";
 import { LAYERS } from "../data/LAYERS";
-import { TotalTitle } from "./App";
+// import { TotalTitle } from "./App";
 import { TTEnd } from "./TTEnd";
 // gsap.registerPlugin(ScrollTrigger);
 
 export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLayer }){
     return (
         <Wrapper>
-            {Array.apply(null, Array(20)).map(function (d) {"h";}).map((d,i)=> <p key={i}> h</p>)}
-            {/* {LAYERS.map((l,i)=> {
+            {/* {Array.apply(null, Array(50)).map(function (d) {"h";}).map((d,i)=> <p key={i}> h</p>)} */}
+            {LAYERS.map((l,i)=> {
                 const setLayer = l.type === "fill" ? setFillLayer : setDividerLayer;
                 const unsetLayer = l.type === "fill" ? setDividerLayer: setFillLayer;
 
@@ -25,7 +25,7 @@ export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLaye
                     setStage={setStage}
                 />);
             })}
-            <TTEnd setIsEnd={setIsEnd}/> */}
+            <TTEnd setIsEnd={setIsEnd}/>
         </Wrapper>
     );
 }

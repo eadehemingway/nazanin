@@ -25,14 +25,13 @@ export function SvgVisual(){
 
 const Container = styled.svg`
     display: flex;
-    align-self: center;
+    align-self: start;
     overflow: visible;
-    width: calc(60% - ${MARGIN_LEFT + MARGIN_RIGHT}px);
     height: ${SVG_HEIGHT}px;
     margin: ${MARGIN_TOP}px ${MARGIN_RIGHT}px ${MARGIN_BOTTOM}px ${MARGIN_LEFT}px;
-
     position: sticky;
     top:0;
+
 `;
 
 const MonthLabel = styled.text`

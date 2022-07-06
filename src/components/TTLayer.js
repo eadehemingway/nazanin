@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
 import { useEffect } from "react";
-import { TotalTitle } from "./App";
+// import { TotalTitle } from "./App";
 import { TTLayerTitle } from "./TTLayerTitle";
 
 export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer }){
