@@ -31,6 +31,7 @@ const Container = styled.svg`
     margin: ${MARGIN_TOP}px ${MARGIN_RIGHT}px ${MARGIN_BOTTOM}px ${MARGIN_LEFT}px;
     position: fixed;
     top:0;
+    left: 100px;
 
 `;
 

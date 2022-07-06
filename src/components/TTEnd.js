@@ -13,8 +13,8 @@ export function TTEnd({ setIsEnd }){
                 scrollTrigger: {
                     trigger: ".end-trigger",
                     // markers: true,
-                    start: "0px 300px",
-                    end: "bottom 300px",
+                    start: "bottom bottom",
+                    end: "bottom bottom",
                     onEnter:()=> setIsEnd(true),
                     onLeaveBack: () => setIsEnd(false)
                 } });
@@ -23,7 +23,11 @@ export function TTEnd({ setIsEnd }){
     }, []);
 
     return (
-        <div className="end-trigger"/>
+        <End className="end-trigger"/>
     );
 }
 
+const End = styled.div`
+height: 100px;
+width: 100px;
+`

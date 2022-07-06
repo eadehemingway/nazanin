@@ -11,6 +11,7 @@ const fills = LAYERS.filter(d=> d.type === "fill");
 
 
 export function Legend({ is_end, setFillLayer, setDividerLayer, fill_layer, divider_layer, setStage }) {
+console.log('is_end:', is_end)
 
     return (
         <LegendContainer>
@@ -42,5 +43,7 @@ const LegendContainer = styled.div`
 	overflow: hidden;
 	display: inline-block;
 	z-index: 5;
-	border: 1px solid yellow;
+	position: fixed;
+	top: 0;
+	left: 0;
 `;

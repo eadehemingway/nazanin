@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
-// import { Legend } from "./Legend";
+import { Legend } from "./components/Legend";
 import { TextContainer } from "./components/TTContainer";
 import { SvgVisual } from "./components/VSvg";
 import { LAYER_NAMES } from "./data/LAYERS";
@@ -175,7 +175,13 @@ function App() {
 
   return (
     <PageContainer>
-
+        <Legend
+                setStage={setStage}
+                is_end={is_end}
+                setFillLayer={setFillLayer}
+                setDividerLayer={setDividerLayer}
+                fill_layer={fill_layer}
+                divider_layer={divider_layer}/>
     <SvgVisual/>
     <TextContainer setStage={setStage} setFillLayer={setFillLayer} setIsEnd={setIsEnd} setDividerLayer={setDividerLayer}/>
 
