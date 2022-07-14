@@ -10,16 +10,6 @@ import { getHighlightPathLookup } from "./services/getHighlightPathLookup";
 import { getCenterArea, BACKGROUND_COLOR } from "./services/utils";
 import "./App.css"
 
-// import dayjs from "dayjs";
-// import dayOfYear from "dayjs/plugin/dayOfYear";
-// import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
-// import isLeapYear from "dayjs/plugin/isLeapYear";
-
-
-// dayjs().format();
-// dayjs.extend(dayOfYear);
-// dayjs.extend(isoWeeksInYear);
-// dayjs.extend(isLeapYear);
 
 const FILL_COLOR = "#2a52d1";
 const BLANK_COLOR = "transparent";

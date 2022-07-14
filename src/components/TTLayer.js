@@ -41,7 +41,6 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
                 key={`${t.id}-${i}`}
                 index={i}
                 setStage={setStage}
-                current_layer={current_layer}
                 stage={stage}
             >{t}</TTText>)}
         </Layer>
@@ -52,13 +51,11 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
 const Layer = styled.div`
     width: 15%;
-    background: #111;
     display:flex;
     flex-direction: column;
     margin: 20px;
     justify-content: space-between;
     margin-right: 5%;
-    border: 5px solid purple;
     position: relative;
     margin-top: 400px;
 
