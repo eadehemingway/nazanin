@@ -27,8 +27,8 @@ const BLANK_COLOR = "transparent";
 
 
 function App() {
- const [stage, setStage] = useState(0);
-    const [fill_layer, setFillLayer] = useState(LAYER_NAMES.birthdays);
+    const [stage, setStage] = useState(0);
+    const [fill_layer, setFillLayer] = useState(null);
     const [divider_layer, setDividerLayer] = useState(null);
 
     const [is_end, setIsEnd] = useState(false);
@@ -175,17 +175,17 @@ function App() {
 
   return (
     <PageContainer>
-        <Legend
+        {/* <Legend
                 setStage={setStage}
                 is_end={is_end}
                 setFillLayer={setFillLayer}
                 setDividerLayer={setDividerLayer}
                 fill_layer={fill_layer}
-                divider_layer={divider_layer}/>
+                divider_layer={divider_layer}/> */}
     <SvgVisual/>
     <TextContainer setStage={setStage} setFillLayer={setFillLayer} setIsEnd={setIsEnd} setDividerLayer={setDividerLayer}/>
 
-</PageContainer>
+    </PageContainer>
   );
 }
 

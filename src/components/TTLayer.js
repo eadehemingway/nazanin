@@ -2,19 +2,20 @@ import styled from "styled-components";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 // import { TotalTitle } from "./App";
 import { TTLayerTitle } from "./TTLayerTitle";
 
 export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer }){
+    const $ref = useRef(null)
 
     useEffect(() => {
-
-        const a = gsap.to(`#${current_layer}`, { scrollTrigger: {
-            trigger: `#${current_layer}`,
-            // markers: true,
-            start: "0px 300px", // 0px from top of element and 300px from top of screen
-            end: "bottom 300px",
+        if (!$ref.current) return
+        const a = gsap.to($ref.current, { scrollTrigger: {
+            trigger: $ref.current,
+            markers: true,
+            start: "top center", // 0px from top of element and 300px from top of screen
+            end: "bottom bottom",
             onEnter:()=> {
                 setLayer(current_layer);
                 setStage(0);
@@ -29,10 +30,10 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
         return () => a.scrollTrigger.kill()
 
-    }, [ current_layer]);
+    }, [ setLayer, unsetLayer, setStage, current_layer]);
     return (
 
-        <TextWrapper id={current_layer}>
+        <Layer ref={$ref}>
             <TTLayerTitle />
             {/* UN STACKED UN COMPLECATED */}
             {events.map((t,i)=> <TTText
@@ -43,21 +44,24 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
                 current_layer={current_layer}
                 stage={stage}
             >{t}</TTText>)}
-        </TextWrapper>
+        </Layer>
 
     );
 }
 
 
-const TextWrapper = styled.div`
+const Layer = styled.div`
     width: 15%;
     background: #111;
     display:flex;
     flex-direction: column;
-    margin: 300px 0px 600px 0px;
+    margin: 20px;
     justify-content: space-between;
     margin-right: 5%;
-    border: 5px solid red;
+    border: 5px solid purple;
     position: relative;
+    margin-top: 400px;
+
+
 `;
 

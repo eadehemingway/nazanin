@@ -9,10 +9,11 @@ import { TTEnd } from "./TTEnd";
 gsap.registerPlugin(ScrollTrigger);
 
 export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLayer }){
+    // const layer_names = LAYERS.map(d=> d.name)
     return (
         <Wrapper>
-            {/* {Array.apply(null, Array(50)).map(function (d) {"h";}).map((d,i)=> <p key={i}> h</p>)} */}
             {LAYERS.map((l,i)=> {
+
                 const setLayer = l.type === "fill" ? setFillLayer : setDividerLayer;
                 const unsetLayer = l.type === "fill" ? setDividerLayer: setFillLayer;
 
@@ -31,8 +32,9 @@ export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLaye
 }
 
 const Wrapper = styled.div`
-    min-width: 200px;
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    border: 5px solid yellow;
 `;
