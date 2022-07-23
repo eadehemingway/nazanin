@@ -9,6 +9,11 @@ export const BACKGROUND_COLOR = "#000000";
 
 const NO_OF_YEARS = 7;
 
+const MIN_TEXT_COLUMN_WIDTH = 114;
+const MIN_TEXT_TOTAL_WIDTH = ((MIN_TEXT_COLUMN_WIDTH + 20) * 2) + 40;
+const MAX_TEXT_COLUMN_WIDTH = 200;
+const MAX_TEXT_TOTAL_WIDTH = ((MAX_TEXT_COLUMN_WIDTH + 20) * 2) + 40;
+
 const MIN_YEAR_GUTTER = 20;
 const MIN_TOTAL_GUTTER = NO_OF_YEARS * MIN_YEAR_GUTTER;
 
@@ -20,14 +25,25 @@ export const MARGIN_RIGHT = 40;
 export const MARGIN_BOTTOM = 40;
 export const MARGIN_LEFT = 40;
 
-const HORIZONTAL_SPACE = SPACE_FOR_LEFT_LABELS + MARGIN_RIGHT + MARGIN_LEFT;
-const VERTICAL_SPACE = SPACE_FOR_TOP_LABELS + MARGIN_TOP + MARGIN_BOTTOM;
+const HORIZONTAL_SPACE = SPACE_FOR_LEFT_LABELS;
+const VERTICAL_SPACE = SPACE_FOR_TOP_LABELS;
 
 const window_width = window.innerWidth;
 const window_height = window.innerHeight;
 
-const chart_width = (window_width * 0.6) - HORIZONTAL_SPACE;
-const chart_height = (window_height * 1) - VERTICAL_SPACE;
+const width_minus_margins = window_width - (MARGIN_LEFT + MARGIN_RIGHT);
+const height_minus_margins = window_height - (MARGIN_TOP + MARGIN_BOTTOM);
+const min_minus_margins = Math.min(width_minus_margins, height_minus_margins);
+const width_multiplication = (width_minus_margins / height_minus_margins) > 1 ? 1.2 : 1;
+
+const TEXT_TOTAL_WIDTH = Math.min(Math.max(window_width - ((min_minus_margins * width_multiplication) + MARGIN_LEFT), MIN_TEXT_TOTAL_WIDTH), MAX_TEXT_TOTAL_WIDTH);
+export const TEXT_COLUMN_WIDTH = ((TEXT_TOTAL_WIDTH - 40) / 2) - 20;
+export const TEXT_H2_FONT_SIZE = TEXT_COLUMN_WIDTH * 0.75;
+export const SVG_WIDTH = Math.min((min_minus_margins * width_multiplication), window_width - (TEXT_TOTAL_WIDTH + MARGIN_LEFT + MARGIN_RIGHT));
+export const SVG_HEIGHT = min_minus_margins;
+
+const chart_width = SVG_WIDTH - HORIZONTAL_SPACE;
+const chart_height = SVG_HEIGHT - VERTICAL_SPACE;
 
 export const DAY_COLUMNS = 7;
 const DAY_ROWS = getRow(365, "2022") + 1;
@@ -40,7 +56,6 @@ export const BOX_SIZE = Math.min(box_width, box_height);
 export const YEAR_GUTTER = Math.max(MIN_YEAR_GUTTER, (chart_width - ((BOX_SIZE * DAY_COLUMNS) * NO_OF_YEARS)) / NO_OF_YEARS);
 
 export const COLUMN_WIDTH = BOX_SIZE * DAY_COLUMNS;
-export const SVG_HEIGHT = (BOX_SIZE * DAY_ROWS) + SPACE_FOR_TOP_LABELS;
 
 export const MIN_DATE = new Date("April 03, 2016 000:00:00");
 export const MAX_DATE = new Date("March 16, 2022 000:00:00");

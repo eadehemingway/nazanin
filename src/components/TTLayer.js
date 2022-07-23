@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
 import { useEffect, useRef } from "react";
 // import { TotalTitle } from "./App";
+import { TEXT_COLUMN_WIDTH } from "../services/utils";
 import { TTLayerTitle } from "./TTLayerTitle";
 
 export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer }){
@@ -50,15 +51,12 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
 
 const Layer = styled.div`
-    width: 15%;
+    width: ${TEXT_COLUMN_WIDTH}px;
     display:flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 20px 40px 20px 20px;
     justify-content: space-between;
-    margin-right: 5%;
     position: relative;
     margin-top: 400px;
-
-
 `;
 

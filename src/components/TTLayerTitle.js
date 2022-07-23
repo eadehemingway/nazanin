@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE } from "../services/utils";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -29,11 +30,12 @@ export function TTLayerTitle(){
 
 const Title = styled.h2`
     position: absolute;
-    left: -200px;
+    left: -${TEXT_COLUMN_WIDTH + 20}px;
+	width: ${TEXT_COLUMN_WIDTH}px;
     height: 100%;
     font-family: fairweather;
     font-weight: 800;
-    font-size: 126px;
+    font-size: ${TEXT_H2_FONT_SIZE}px;
     color: #ffffff;
     margin: 0;
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { YearViz } from "./VYear";
-import { BOX_SIZE , SPACE_FOR_TOP_LABELS, SVG_HEIGHT, MARGIN_TOP, MARGIN_RIGHT, MARGIN_BOTTOM, MARGIN_LEFT } from "../services/utils";
+import { BOX_SIZE , SPACE_FOR_TOP_LABELS, SVG_WIDTH, SVG_HEIGHT, MARGIN_TOP, MARGIN_RIGHT, MARGIN_BOTTOM, MARGIN_LEFT } from "../services/utils";
 
 export function SvgVisual(){
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -27,11 +27,11 @@ const Container = styled.svg`
     display: flex;
     align-self: start;
     overflow: visible;
+	width: ${SVG_WIDTH}px;
     height: ${SVG_HEIGHT}px;
     margin: ${MARGIN_TOP}px ${MARGIN_RIGHT}px ${MARGIN_BOTTOM}px ${MARGIN_LEFT}px;
     position: fixed;
     top:0;
-    left: 100px;
 
 `;
 
