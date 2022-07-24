@@ -2,7 +2,8 @@ import * as d3 from "d3";
 import { events } from './EVENTS.js';
 
 export const LAYER_NAMES = {
-    prime_ministers: "Prime ministers",
+    intro: "Held in Iran",
+	prime_ministers: "Prime ministers",
     foreign_secretaries: "Foreign secretaries",
     solitary_confinement: "Solitary confinement",
     hunger_strikes: "Hunger strikes",
@@ -10,6 +11,14 @@ export const LAYER_NAMES = {
     locations: "Locations",
     birthdays: "Birthdays",
 };
+
+const INTRO_LAYER = {
+	name: LAYER_NAMES["intro"],
+	type: "divider",
+	events: [],
+	days: 2172
+};
+
 
 function sortByDate(a, b) {
 	return a.start_date - b.start_date;
@@ -38,8 +47,8 @@ function getLayers() {
 		.sort(sortByDate)
 		.sort(sortByOrder);
 
-	let layers = [];
-	let layer_names = new Set();
+	let layers = [INTRO_LAYER];
+	let layer_names = new Set().add(INTRO_LAYER.name);
 
 	sorted_rows.forEach(row => {
 		const layer_name = LAYER_NAMES[row.layer];
