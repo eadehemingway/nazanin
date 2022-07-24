@@ -4,17 +4,11 @@ import styled from "styled-components";
 import { Legend } from "./components/Legend";
 import { TextContainer } from "./components/TTContainer";
 import { SvgVisual } from "./components/VSvg";
-import { LAYER_NAMES } from "./data/LAYERS";
+import { LAYER_NAMES} from "./data/LAYERS";
 import { getDividerPathLookup } from "./services/getDividerPathLookup";
 import { getHighlightPathLookup } from "./services/getHighlightPathLookup";
-import { getCenterArea, BACKGROUND_COLOR } from "./services/utils";
+import { getCenterArea, BACKGROUND_COLOR, FILL_COLOR, BLANK_COLOR } from "./services/utils";
 import "./App.css"
-
-
-const FILL_COLOR = "#2a52d1";
-const BLANK_COLOR = "transparent";
-
-
 
 function App() {
     const [stage, setStage] = useState(0);
@@ -173,7 +167,7 @@ function App() {
                 fill_layer={fill_layer}
                 divider_layer={divider_layer}/> */}
     <SvgVisual/>
-    <TextContainer setStage={setStage} setFillLayer={setFillLayer} setIsEnd={setIsEnd} setDividerLayer={setDividerLayer}/>
+    <TextContainer setStage={setStage} setFillLayer={setFillLayer} setIsEnd={setIsEnd} setDividerLayer={setDividerLayer} fill_layer={fill_layer}/>
 
     </PageContainer>
   );

@@ -4,12 +4,12 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useMemo } from "react";
 import { TTLayer } from "./TTLayer";
 import { LAYERS } from "../data/LAYERS";
-import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE } from "../services/utils";
+import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE, FILL_COLOR } from "../services/utils";
 // import { TotalTitle } from "./App";
 import { TTEnd } from "./TTEnd";
 gsap.registerPlugin(ScrollTrigger);
 
-export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLayer }){
+export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLayer, fill_layer }){
     // const layer_names = LAYERS.map(d=> d.name)
     return (
         <Wrapper>
@@ -26,9 +26,10 @@ export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLaye
                     setLayer={setLayer}
                     unsetLayer={unsetLayer}
                     setStage={setStage}
+					type={l.type}
                 />);
             })}
-			<DaysTitle>days</DaysTitle>
+			<DaysTitle color={fill_layer ? FILL_COLOR : "#fff"}>days</DaysTitle>
             <TTEnd setIsEnd={setIsEnd}/>
         </Wrapper>
     );
@@ -50,4 +51,5 @@ const DaysTitle = styled.h2`
 	padding: 40px 40px 40px 10px;
 	margin: 0px;
 	background-image: linear-gradient(0deg, #000, 80%, rgba(0, 0, 0, 0));
+	color: ${props => props.color};
 `;

@@ -6,6 +6,8 @@ import isLeapYear from "dayjs/plugin/isLeapYear";
 import { getXLeftOfYear, getXRightOfYear } from "./getDividerPaths";
 
 export const BACKGROUND_COLOR = "#000000";
+export const FILL_COLOR = "#2a52d1";
+export const BLANK_COLOR = "transparent";
 
 const NO_OF_YEARS = 7;
 

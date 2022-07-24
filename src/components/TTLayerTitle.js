@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE, SPACE_FOR_TOP_LABELS } from "../services/utils";
+import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE, SPACE_FOR_TOP_LABELS, FILL_COLOR } from "../services/utils";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 
-export function TTLayerTitle(){
+export function TTLayerTitle({ type }){
     const $title = useRef(null);
     useEffect(() => {
     if (!$title.current) return
@@ -23,7 +23,7 @@ export function TTLayerTitle(){
     }, []);
 
     return (
-        <Title ref={$title}>2,172 </Title>
+        <Title ref={$title} color={type === "fill" ? FILL_COLOR : "#fff"}>2,172 </Title>
     );
 }
 
@@ -34,6 +34,6 @@ const Title = styled.h2`
 	width: ${TEXT_COLUMN_WIDTH}px;
     height: 100%;
     font-size: ${TEXT_H2_FONT_SIZE}px;
-    color: #ffffff;
+    color: ${props => props.color};
     margin: 0;
 `;

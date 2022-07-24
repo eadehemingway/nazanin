@@ -4,19 +4,18 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { TTText } from "./TTText";
 import { useEffect, useRef } from "react";
 // import { TotalTitle } from "./App";
-import { TEXT_COLUMN_WIDTH } from "../services/utils";
+import { TEXT_COLUMN_WIDTH, SPACE_FOR_TOP_LABELS } from "../services/utils";
 import { TTLayerTitle } from "./TTLayerTitle";
 
-export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer }){
+export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer, index, type }){
     const $ref = useRef(null)
 
     useEffect(() => {
         if (!$ref.current) return
         const a = gsap.to($ref.current, { scrollTrigger: {
             trigger: $ref.current,
-            markers: true,
-            start: "top center", // 0px from top of element and 300px from top of screen
-            end: "bottom bottom",
+            start: "top bottom", // 0px from top of element and 300px from top of screen
+            end: "bottom top",
             onEnter:()=> {
                 setLayer(current_layer);
                 setStage(0);
@@ -34,8 +33,8 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
     }, [ setLayer, unsetLayer, setStage, current_layer, stage]);
     return (
 
-        <Layer ref={$ref} margin_top={index === "0" ? 20 : SPACE_FOR_TOP_LABELS}>
-            <TTLayerTitle />
+        <Layer ref={$ref} margin_top={index === 0 ? SPACE_FOR_TOP_LABELS : 20}>
+            <TTLayerTitle type={type}/>
             {/* UN STACKED UN COMPLECATED */}
             {events.map((t,i)=> <TTText
                 text={t.description}
