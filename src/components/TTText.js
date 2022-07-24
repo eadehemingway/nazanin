@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import { P_MARGIN_TOP } from "../services/utils";
 import gsap from "gsap";
 
 export function TTText({ stage, setStage, text, index }){
@@ -35,5 +36,5 @@ export function TTText({ stage, setStage, text, index }){
 
 
 const P = styled.p`
-margin: 50px 0;
+	margin: ${P_MARGIN_TOP}px 0 50px 0;
 `;

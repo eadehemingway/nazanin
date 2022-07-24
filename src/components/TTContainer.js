@@ -19,6 +19,7 @@ export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLaye
 
                 return  (<TTLayer
                     key={i}
+					index={i}
                     current_layer={l.name}
                     events={l.events}
                     setLayer={setLayer}

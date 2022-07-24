@@ -59,7 +59,7 @@ export function YearViz({ year, index }){
             .append("text")
             .text(year)
             .attr("x", 0)
-            .attr("y", - 50);
+            .attr("y", -(SPACE_FOR_TOP_LABELS - 10));
 
     }, [year]);
 

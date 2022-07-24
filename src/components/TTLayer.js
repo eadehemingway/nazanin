@@ -31,10 +31,10 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
         return () => a.scrollTrigger.kill()
 
-    }, [ setLayer, unsetLayer, setStage, current_layer]);
+    }, [ setLayer, unsetLayer, setStage, current_layer, stage]);
     return (
 
-        <Layer ref={$ref}>
+        <Layer ref={$ref} margin_top={index === "0" ? 20 : SPACE_FOR_TOP_LABELS}>
             <TTLayerTitle />
             {/* UN STACKED UN COMPLECATED */}
             {events.map((t,i)=> <TTText
@@ -54,9 +54,8 @@ const Layer = styled.div`
     width: ${TEXT_COLUMN_WIDTH}px;
     display:flex;
     flex-direction: column;
-    margin: 20px 40px 20px 20px;
+	margin: ${props => props.margin_top}px 40px 100vh 20px;
     justify-content: space-between;
     position: relative;
-    margin-top: 400px;
 `;
 

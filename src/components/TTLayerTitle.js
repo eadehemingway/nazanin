@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE } from "../services/utils";
+import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE, SPACE_FOR_TOP_LABELS } from "../services/utils";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -11,7 +11,7 @@ export function TTLayerTitle(){
         const a = gsap.to($title.current, {
             scrollTrigger: {
                 trigger: $title.current,
-                start: "top 50",
+                start: `top ${SPACE_FOR_TOP_LABELS}`,
                 end: "bottom 200",
                 // markers: true,
                 scrub: true,
