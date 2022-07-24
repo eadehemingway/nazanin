@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import { TEXT_COLUMN_WIDTH, SPACE_FOR_TOP_LABELS } from "../services/utils";
 import { TTLayerTitle } from "./TTLayerTitle";
 
-export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer, index, type }){
+export function TTLayer({ stage, current_layer, setLayer, events, setStage, unsetLayer, index, type, days }){
     const $ref = useRef(null)
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
     return (
 
         <Layer ref={$ref} margin_top={index === 0 ? SPACE_FOR_TOP_LABELS : 20}>
-            <TTLayerTitle type={type}/>
+            <TTLayerTitle type={type} days={days}/>
             {/* UN STACKED UN COMPLECATED */}
             {events.map((t,i)=> <TTText
                 text={t.description}

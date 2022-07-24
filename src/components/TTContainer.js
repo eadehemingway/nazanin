@@ -27,6 +27,7 @@ export function TextContainer({ setFillLayer, setStage, setIsEnd, setDividerLaye
                     unsetLayer={unsetLayer}
                     setStage={setStage}
 					type={l.type}
+					days={l.days}
                 />);
             })}
 			<DaysTitle color={fill_layer ? FILL_COLOR : "#fff"}>days</DaysTitle>

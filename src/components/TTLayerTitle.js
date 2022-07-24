@@ -2,9 +2,13 @@ import styled from "styled-components";
 import { TEXT_COLUMN_WIDTH, TEXT_H2_FONT_SIZE, SPACE_FOR_TOP_LABELS, FILL_COLOR } from "../services/utils";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { format } from "d3";
 
+function commaSeparated(number) {
+	return format(",")(number);
+}
 
-export function TTLayerTitle({ type }){
+export function TTLayerTitle({ type, days }){
     const $title = useRef(null);
     useEffect(() => {
     if (!$title.current) return
@@ -23,7 +27,7 @@ export function TTLayerTitle({ type }){
     }, []);
 
     return (
-        <Title ref={$title} color={type === "fill" ? FILL_COLOR : "#fff"}>2,172 </Title>
+        <Title ref={$title} color={type === "fill" ? FILL_COLOR : "#fff"}>{commaSeparated(days)}</Title>
     );
 }
 

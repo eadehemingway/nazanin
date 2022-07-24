@@ -49,11 +49,14 @@ function getLayers() {
 			layers.push({
 				name: layer_name,
         		type: row.type,
-				events: []
+				events: [],
+				days: row.type === "fill" ? 0 : 2172
 			})
 			layer_i = layers.length - 1;
 		}
-		layers[layer_i].events.push(row);
+		const this_layer = layers[layer_i];
+		this_layer.events.push(row);
+		if (this_layer.type === "fill") this_layer.days = this_layer.days + Number(row.days);
 	})
 	return layers;
 }
