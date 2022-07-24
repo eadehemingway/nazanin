@@ -35,6 +35,7 @@ export function TTLayer({ stage, current_layer, setLayer, events, setStage, unse
 
         <Layer ref={$ref} margin_top={index === 0 ? SPACE_FOR_TOP_LABELS : 20}>
             <TTLayerTitle type={type} days={days}/>
+			<TTLayerSubtitle>{current_layer}</TTLayerSubtitle>
             {/* UN STACKED UN COMPLECATED */}
             {events.map((t,i)=> <TTText
                 text={t.description}
@@ -57,4 +58,11 @@ const Layer = styled.div`
     justify-content: space-between;
     position: relative;
 `;
+
+const TTLayerSubtitle = styled.span`
+	width: 100%;
+	font-weight: 700;
+	position: absolute;
+	bottom: 100%;
+`
 
