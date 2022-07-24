@@ -12,11 +12,23 @@ export const LAYER_NAMES = {
     birthdays: "Birthdays",
 };
 
+const LAYER_INTROS = {
+    intro: "Held in Iran",
+	prime_ministers: "Prime ministers",
+    foreign_secretaries: "Foreign secretaries",
+    solitary_confinement: "Solitary confinement",
+    hunger_strikes: "Hunger strikes",
+    medical_attention: "Medical attention",
+    locations: "Locations",
+    birthdays: "Birthdays",
+};
+
 const INTRO_LAYER = {
 	name: LAYER_NAMES["intro"],
 	type: "divider",
 	events: [],
-	days: 2172
+	days: 2172,
+	intro: LAYER_INTROS["intro"]
 };
 
 
@@ -52,6 +64,7 @@ function getLayers() {
 
 	sorted_rows.forEach(row => {
 		const layer_name = LAYER_NAMES[row.layer];
+		const layer_intro = LAYER_INTROS[row.layer];
 		let layer_i = [...layer_names].indexOf(layer_name);
 		if (layer_i < 0) {
 			layer_names.add(layer_name);
@@ -59,7 +72,8 @@ function getLayers() {
 				name: layer_name,
         		type: row.type,
 				events: [],
-				days: row.type === "fill" ? 0 : 2172
+				days: row.type === "fill" ? 0 : 2172,
+				intro: layer_intro
 			})
 			layer_i = layers.length - 1;
 		}
