@@ -33,8 +33,6 @@ const Title = styled.h2`
     left: -${TEXT_COLUMN_WIDTH + 20}px;
 	width: ${TEXT_COLUMN_WIDTH}px;
     height: 100%;
-    font-family: fairweather;
-    font-weight: 800;
     font-size: ${TEXT_H2_FONT_SIZE}px;
     color: #ffffff;
     margin: 0;
