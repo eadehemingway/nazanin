@@ -34,6 +34,7 @@ export function TTLayerTitle({ type, days }){
 
 const Title = styled.h2`
     position: absolute;
+	text-align: right;
     left: -${TEXT_COLUMN_WIDTH + 20}px;
 	width: ${TEXT_COLUMN_WIDTH}px;
     height: 100%;
