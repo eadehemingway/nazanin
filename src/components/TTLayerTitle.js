@@ -9,36 +9,21 @@ function commaSeparated(number) {
 }
 
 export function TTLayerTitle({ type, days }){
-    const $title = useRef(null);
-    useEffect(() => {
-    if (!$title.current) return
-        const a = gsap.to($title.current, {
-            scrollTrigger: {
-                trigger: $title.current,
-                start: `top ${SPACE_FOR_TOP_LABELS}`,
-                end: "bottom 200",
-                // markers: true,
-                scrub: true,
-                pin: true
-            },
-        });
-        return () => a.scrollTrigger.kill()
-
-    }, []);
 
     return (
-        <Title ref={$title} color={type === "fill" ? FILL_COLOR : "#fff"}>{commaSeparated(days)}</Title>
+        <Title color={type === "fill" ? FILL_COLOR : "#fff"}>{commaSeparated(days)}</Title>
     );
 }
 
 
 const Title = styled.h2`
-    position: absolute;
+    position: sticky;
 	text-align: right;
-    left: -${TEXT_COLUMN_WIDTH + 20}px;
 	width: ${TEXT_COLUMN_WIDTH}px;
-    height: 100%;
+    height: 80px;
     font-size: ${TEXT_H2_FONT_SIZE}px;
     color: ${props => props.color};
     margin: 0;
+    top: ${SPACE_FOR_TOP_LABELS}px;
+    transform: translateX(-${TEXT_COLUMN_WIDTH + 20}px);
 `;

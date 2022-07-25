@@ -184,7 +184,6 @@ const PageContainer = styled.div`
     fill: #fff;
     position:relative;
     justify-content: space-between;
-    overflow: hidden;
     height: 100%;
 `;
 
